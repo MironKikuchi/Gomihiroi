@@ -7,6 +7,10 @@
 #include "texture.h"
 #include "game.h"
 #include "PuzzleBlock.h"
+#include "PuzzleBlock2.h"
+#include "PuzzleBlock3.h"
+#include "PuzzleBlock4.h"
+#include "PuzzleBlock5.h"
 //#include "sound.h"
 //#include "fade.h"
 //#include "goalscene.h"
@@ -207,6 +211,10 @@ void Update(HWND hWnd)
 		//マウスの左ボタンが押された"
 		TitleGetMouse(1);
 		PuzzleGetMouse(1);
+		PuzzleGetMouse2(1);
+		PuzzleGetMouse3(1);
+		PuzzleGetMouse4(1);
+		PuzzleGetMouse5(1);
 	}
 	UpdateScene(hWnd);
 }

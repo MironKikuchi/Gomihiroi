@@ -8,7 +8,10 @@
 //#include "sound.h"
 #include "texture.h"
 #include "PuzzleBlock.h"
-//#include "collision.h"
+#include "PuzzleBlock2.h"
+#include "PuzzleBlock3.h"
+#include "PuzzleBlock4.h"
+#include "PuzzleBlock5.h"
 #include "input.h"
 #include "sprite.h"
 
@@ -22,6 +25,10 @@ void InitGame(void)
 {
 	g_BgTextureIndex = LoadTexture("texture/car_road.png");
 	InitPuzzle();
+	InitPuzzle2();
+	InitPuzzle3();
+	InitPuzzle4();
+	InitPuzzle5();
 	//g_BGMIndex = LoadSound("sound/bgm01.wav");
 
 	// クリアカラーを水色に変更
@@ -34,7 +41,10 @@ void InitGame(void)
 void UninitGame(void)
 {
 	UninitPuzzle();
-
+	UninitPuzzle2();
+	UninitPuzzle3();
+	UninitPuzzle4();
+	UninitPuzzle5();
 }
 
 /*------------------------------------------------------------------------------
@@ -43,6 +53,10 @@ void UninitGame(void)
 void UpdateGame(HWND hWnd)
 {
 	UpdatePuzzle(hWnd);
+	UpdatePuzzle2(hWnd);
+	UpdatePuzzle3(hWnd);
+	UpdatePuzzle4(hWnd);
+	UpdatePuzzle5(hWnd);
 
 
 	//全ての移動処理が終わってから当たり判定を行う
@@ -62,5 +76,9 @@ void DrawGame(void)
 		0.0f, 0.0f,
 		1.0f, 1.0f);
 	DrawPuzzle();
+	DrawPuzzle2();
+	DrawPuzzle3();
+	DrawPuzzle4();
+	DrawPuzzle5();
 }
 
