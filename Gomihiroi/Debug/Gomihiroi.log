@@ -1,0 +1,3 @@
+﻿  PuzzleBlock.cpp
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(23,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'PUZZLE_T' の左辺を無視します。
+  Gomihiroi.vcxproj -> C:\Users\miron\Projects\Gomihiroi\Debug\Gomihiroi.exe
