@@ -67,10 +67,6 @@ void UpdatePuzzle5(HWND hWnd)
 	//マウスの座標をスクリーンからクライアント(ウィンドウ)へ
 	ScreenToClient(hWnd, &mouse_p);
 
-	char str[256];
-	sprintf_s(str, "PosX: %d PosY: %d \n", mouse_p.x, mouse_p.y);
-	OutputDebugString(str);
-
 
 	//画像のボタンの当たり判定
 	if (mouse_p.x < (g_PuzzleBlock5.pos.x + PUZZLEHALF_SIZE_X) && mouse_p.x >= (g_PuzzleBlock5.pos.x - PUZZLEHALF_SIZE_X) &&

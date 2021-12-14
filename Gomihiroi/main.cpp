@@ -174,9 +174,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	case WM_LBUTTONDOWN:
 		//マウス左ボタン押下
-		g_MouseCursorPos_x = LOWORD(lParam);
-		g_MouseCursorPos_y = HIWORD(lParam);
-		return MousePointerPos();
+	/*	g_MouseCursorPos_x = LOWORD(lParam);
+		g_MouseCursorPos_y = HIWORD(lParam);*/
+		//return MousePointerPos();
 
 	case WM_LBUTTONUP:
 		//マウス左ボタン離した
@@ -257,11 +257,11 @@ void Draw(void)
 	);
 }
 
-int MousePointerPos()
-{
-	g_MouseCursorPos_x;
-	g_MouseCursorPos_y;
-	return 0;
-}
+//int MousePointerPos()
+//{
+//	g_MouseCursorPos_x;
+//	g_MouseCursorPos_y;
+//	return 0;
+//}
 
 

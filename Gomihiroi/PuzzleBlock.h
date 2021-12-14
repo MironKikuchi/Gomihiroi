@@ -7,6 +7,7 @@
 #define PUZZLE_SIZE_Y 32
 #define PUZZLEHALF_SIZE_X 16
 #define PUZZLEHALF_SIZE_Y 16
+#define PUZZLECOUNT_SIZE 20
 
 
 void InitPuzzle(void);
