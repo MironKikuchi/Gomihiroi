@@ -161,6 +161,7 @@
     <ClCompile Include="PuzzleBlock4.cpp" />
     <ClCompile Include="PuzzleBlock5.cpp" />
     <ClCompile Include="scene.cpp" />
+    <ClCompile Include="score.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="title.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="PuzzleBlock4.h" />
     <ClInclude Include="PuzzleBlock5.h" />
     <ClInclude Include="scene.h" />
+    <ClInclude Include="score.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="title.h" />

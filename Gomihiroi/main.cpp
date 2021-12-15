@@ -207,15 +207,15 @@ void Update(HWND hWnd)
 {
 	Keyboard_Update();
 
-	if (GetKeyState(VK_LBUTTON) & 0x80) {
-		//マウスの左ボタンが押された"
-		TitleGetMouse(1);
-		PuzzleGetMouse(1);
-		PuzzleGetMouse2(1);
-		PuzzleGetMouse3(1);
-		PuzzleGetMouse4(1);
-		PuzzleGetMouse5(1);
-	}
+	//左クリックされたか？
+	int onClick = (GetKeyState(VK_LBUTTON) & 0x80) ? 1 : 0;
+	TitleSetMouse(onClick);
+	PuzzleSetMouse(onClick);
+	PuzzleSetMouse2(onClick);
+	PuzzleSetMouse3(onClick);
+	PuzzleSetMouse4(onClick);
+	PuzzleSetMouse5(onClick);
+
 	UpdateScene(hWnd);
 }
 

@@ -11,4 +11,4 @@ void DrawPuzzle2(void);
 
 bool IsActivePuzzle2(void);
 void SetActivePuzzle2(int flag);
-bool PuzzleGetMouse2(int index);
+void PuzzleSetMouse2(int index);

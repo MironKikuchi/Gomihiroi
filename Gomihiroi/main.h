@@ -4,8 +4,8 @@
 // ウィンドウのサイズ
 #define SCREEN_WIDTH  540	//幅
 #define SCREEN_HEIGHT 960	//高さ
-#define SCREEN_HALFWIDTH  225	//幅
-#define SCREEN_HALFHEIGHT 400	//高さ
+#define SCREEN_HALFWIDTH  270	//幅
+#define SCREEN_HALFHEIGHT 480	//高さ
 
 //620 924
 

@@ -14,6 +14,7 @@
 #include "PuzzleBlock5.h"
 #include "input.h"
 #include "sprite.h"
+#include "score.h"
 
 static int g_BgTextureIndex;
 static int g_BGMIndex = 0;
@@ -29,6 +30,8 @@ void InitGame(void)
 	InitPuzzle3();
 	InitPuzzle4();
 	InitPuzzle5();
+
+	InitScore();
 	//g_BGMIndex = LoadSound("sound/bgm01.wav");
 
 	// クリアカラーを水色に変更
@@ -45,6 +48,8 @@ void UninitGame(void)
 	UninitPuzzle3();
 	UninitPuzzle4();
 	UninitPuzzle5();
+
+	UninitScore();
 }
 
 /*------------------------------------------------------------------------------
@@ -58,7 +63,7 @@ void UpdateGame(HWND hWnd)
 	UpdatePuzzle4(hWnd);
 	UpdatePuzzle5(hWnd);
 
-
+	UpdateScore();
 	//全ての移動処理が終わってから当たり判定を行う
 	//UpdateCollision();
 
@@ -75,10 +80,14 @@ void DrawGame(void)
 		SCREEN_WIDTH, SCREEN_HEIGHT,
 		0.0f, 0.0f,
 		1.0f, 1.0f);
+
+
 	DrawPuzzle();
 	DrawPuzzle2();
 	DrawPuzzle3();
 	DrawPuzzle4();
 	DrawPuzzle5();
+
+	DrawScore();
 }
 

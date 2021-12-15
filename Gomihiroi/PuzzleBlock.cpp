@@ -3,6 +3,7 @@
 #include "input.h"
 #include "main.h"
 #include "sprite.h"
+#include "score.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -29,25 +30,34 @@ static int g_TextureIndex;
 static int mouse = 0;
 static int Frame;
 unsigned int nowtime = (unsigned int)time(NULL);
+int j = 0;
 
 /*------------------------------------------------------------------------------
 初期化関数
 ------------------------------------------------------------------------------*/
 void InitPuzzle(void)
 {
+	srand(nowtime);//初期化
+	
+	//フルパスfull pathではなくて
+	//相対パスを指定する
+	g_TextureIndex = LoadTexture("texture/Hokori.png");
+
 	for (int i = 0; i < _countof(g_PuzzleBlock1); i++)
-	{
-		g_PuzzleBlock1[i].pos.x = SCREEN_HALFWIDTH - 200;
-		g_PuzzleBlock1[i].pos.y = 0;
+	{	
+		SetRandomBlockPos(i);
 		g_PuzzleBlock1[i].Isdisp = false;
-
-
-		//フルパスfull pathではなくて
-		//相対パスを指定する
-		g_TextureIndex = LoadTexture("texture/enemy.png");
-
-		g_PuzzleBlock1[i].Isdisp = true;
 	}
+}
+
+/*------------------------------------------------------------------------------
+ブロックのX軸をランダムでセッツ
+------------------------------------------------------------------------------*/
+void SetRandomBlockPos(int index)
+{
+	int randomposX = rand() % SCREEN_WIDTH;
+	g_PuzzleBlock1[index].pos.x = randomposX;
+	g_PuzzleBlock1[index].pos.y = PUZZLE_TOP;
 }
 
 /*------------------------------------------------------------------------------
@@ -70,6 +80,7 @@ void UpdatePuzzle(HWND hWnd)
 		{
 			if (g_PuzzleBlock1[i].Isdisp == false)
 			{
+				SetRandomBlockPos(i);
 				g_PuzzleBlock1[i].Isdisp = true;
 				break;
 			}
@@ -96,35 +107,57 @@ void UpdatePuzzle(HWND hWnd)
 			continue;
 		}
 
-		srand(nowtime);
-		int randomposX = rand() % SCREEN_WIDTH + 1 * i;
-		int randomposY = rand() % SCREEN_HEIGHT + 1 * i;
-		g_PuzzleBlock1[i].pos.x = randomposX;
-		g_PuzzleBlock1[i].pos.y = randomposY;
-		
+		g_PuzzleBlock1[i].pos.y += g_PuzzleBlock1[i].speed.y;
+
+		if (mouse == 1)
+		{
+			if (mouse_p.x < (g_PuzzleBlock1[i].pos.x + PUZZLEHALF_SIZE_X) && mouse_p.x >= (g_PuzzleBlock1[i].pos.x - PUZZLEHALF_SIZE_X) &&
+				mouse_p.y < (g_PuzzleBlock1[i].pos.y + PUZZLEHALF_SIZE_Y) && mouse_p.y >= (g_PuzzleBlock1[i].pos.y - PUZZLEHALF_SIZE_Y))
+				{
+					g_PuzzleBlock1[i].Isdisp = false;
+					g_PuzzleBlock1[i].pos.y = 0;
+					SetScorePoint(5);
+				}
+		}	
 
 		//画像のボタンの当たり判定
-		if (mouse_p.x < (g_PuzzleBlock1[i].pos.x + PUZZLEHALF_SIZE_X) && mouse_p.x >= (g_PuzzleBlock1[i].pos.x - PUZZLEHALF_SIZE_X) &&
-			mouse_p.y < (g_PuzzleBlock1[i].pos.y + PUZZLEHALF_SIZE_Y) && mouse_p.y >= (g_PuzzleBlock1[i].pos.y - PUZZLEHALF_SIZE_Y))
-		{
-			if (mouse == 1)
-			{
-				g_PuzzleBlock1[i].Isdisp = false;
-				g_PuzzleBlock1[i].pos.y = 0;
-			}
-		}
-		else
-		{
-			mouse = 0;
-		}
-		if (g_PuzzleBlock1[i].pos.x > SCREEN_WIDTH && g_PuzzleBlock1[i].pos.x < -5 &&
-			g_PuzzleBlock1[i].pos.y > SCREEN_HEIGHT && g_PuzzleBlock1[i].pos.y < -5)
+		// if (mouse_p.x < (g_PuzzleBlock1[i].pos.x + PUZZLEHALF_SIZE_X) && mouse_p.x >= (g_PuzzleBlock1[i].pos.x - PUZZLEHALF_SIZE_X) &&
+		// 	mouse_p.y < (g_PuzzleBlock1[i].pos.y + PUZZLEHALF_SIZE_Y) && mouse_p.y >= (g_PuzzleBlock1[i].pos.y - PUZZLEHALF_SIZE_Y))
+		// {
+		// 	if (mouse == 1)
+		// 	{
+		// 		g_PuzzleBlock1[i].Isdisp = false;
+		// 		g_PuzzleBlock1[i].pos.y = 0;
+		// 	}
+		// }
+		// else
+		// {
+		// 	mouse = 0;
+		// }
+
+		//画像が下に行ったら初期値にする
+		if (g_PuzzleBlock1[i].pos.y > SCREEN_HEIGHT)
 		{
 			g_PuzzleBlock1[i].Isdisp = false;
-			g_PuzzleBlock1[i].pos.y = 0;
+			g_PuzzleBlock1[i].pos.y = PUZZLE_TOP;
 		}
 	}
-	g_PuzzleBlock1[i].pos.y += g_PuzzleBlock1[i].speed.y;
+	
+	//画像のボタンの当たり判定
+	/*if (mouse_p.x < (g_PuzzleBlock1[j].pos.x + PUZZLEHALF_SIZE_X) && mouse_p.x >= (g_PuzzleBlock1[j].pos.x - PUZZLEHALF_SIZE_X) &&
+		mouse_p.y < (g_PuzzleBlock1[j].pos.y + PUZZLEHALF_SIZE_Y) && mouse_p.y >= (g_PuzzleBlock1[j].pos.y - PUZZLEHALF_SIZE_Y))
+	{
+		if (mouse == 1)
+		{
+			g_PuzzleBlock1[j].Isdisp = false;
+			g_PuzzleBlock1[j].pos.y = 0;
+		}
+	}
+	else
+	{
+		mouse = 0;
+	}*/
+	
 }
 
 
@@ -191,8 +224,7 @@ void DrawPuzzle(void)
 	}
 }
 
-bool PuzzleGetMouse(int index)
+void PuzzleSetMouse(int index)
 {
 	mouse = index;
-	return 0;
 }

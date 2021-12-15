@@ -39,7 +39,7 @@ void InitPuzzle2(void)
 
 	//フルパスfull pathではなくて
 	//相対パスを指定する
-	g_DustTextureIndex = LoadTexture("texture/Hokori.jpg");
+	g_DustTextureIndex = LoadTexture("texture/enemy.png");
 
 
 	g_PuzzleBlock2.Isdisp = true;
@@ -155,8 +155,7 @@ void SetActivePuzzle2(int flag)
 	g_PuzzleBlock2.Isdisp = flag;
 }
 
-bool PuzzleGetMouse2(int index)
+void PuzzleSetMouse2(int index)
 {
 	mouse2 = index;
-	return 0;
 }

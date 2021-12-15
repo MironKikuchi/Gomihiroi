@@ -155,8 +155,7 @@ void SetActivePuzzle3(int flag)
 	g_PuzzleBlock3.Isdisp = flag;
 }
 
-bool PuzzleGetMouse3(int index)
+void PuzzleSetMouse3(int index)
 {
 	mouse3 = index;
-	return 0;
 }

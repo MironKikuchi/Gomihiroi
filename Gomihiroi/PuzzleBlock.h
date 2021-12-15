@@ -7,7 +7,9 @@
 #define PUZZLE_SIZE_Y 32
 #define PUZZLEHALF_SIZE_X 16
 #define PUZZLEHALF_SIZE_Y 16
-#define PUZZLECOUNT_SIZE 20
+#define PUZZLECOUNT_SIZE 15
+
+#define PUZZLE_TOP 0
 
 
 void InitPuzzle(void);
@@ -19,4 +21,5 @@ void DrawPuzzle(void);
 //D3DXVECTOR2 EnemyPosition(void);
 bool IsActivePuzzle(void);
 void SetActivePuzzle(int flag);
-bool PuzzleGetMouse(int index);
+void PuzzleSetMouse(int index);
+void SetRandomBlockPos(int index);

@@ -16,4 +16,4 @@ void UninitTitle(void);
 void UpdateTitle(HWND hWnd);
 void DrawTitle(void);
 
-bool TitleGetMouse(int index);
+void TitleSetMouse(int index);

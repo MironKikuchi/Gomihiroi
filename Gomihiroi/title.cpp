@@ -39,7 +39,7 @@ static int mouse;
 void InitTitle(void)
 {
 	g_TitleButton.Pos.x = (TITLEBG_HALF_SIZE_X);
-	g_TitleButton.Pos.x = (TITLEBG_HALF_SIZE_Y)+150;
+	g_TitleButton.Pos.y = (TITLEBG_HALF_SIZE_Y)+150;
 
 	g_BgTextureIndex = LoadTexture("texture/enemy.png");
 	g_TitleTextureIndex = LoadTexture("texture/SceneFont5");
@@ -110,8 +110,7 @@ void DrawTitle(void)
 		1.0f, 1.0f);
 }
 
-bool TitleGetMouse(int index)
+void TitleSetMouse(int index)
 {
 	mouse = index;
-	return 0;
 }
