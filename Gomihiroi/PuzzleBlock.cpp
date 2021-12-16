@@ -116,7 +116,7 @@ void UpdatePuzzle(HWND hWnd)
 				{
 					g_PuzzleBlock1[i].Isdisp = false;
 					g_PuzzleBlock1[i].pos.y = 0;
-					SetScorePoint(5);
+					UpdateScore(5);
 				}
 		}	
 

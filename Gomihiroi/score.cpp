@@ -20,19 +20,25 @@ typedef struct
 /*------------------------------------------------------------------------------
 グローバル変数の定義
 ------------------------------------------------------------------------------*/
-static SCORE_T g_ScoreButton;
+static SCORE_T g_ScoreNumber[SCORE_NUMBER_MAX];
 
 static int g_ScoreTextureIndex;
 
-//取得したスコアポイントの入れ物
-static int ScorePointContainer = 0;
 
 static int ScorePointCharge = 0;
 
 //ループした数を入れる
-int g_Shift;
+int g_Shift = 0;
 
-int g_CountNumber[SCORE_MAX];
+static int g_r = 0;
+
+float byouga1;
+float byouga2;
+float byouga3;
+float byouga4;
+float byouga5;
+float byouga6;
+float byouga7;
 
 
 
@@ -41,9 +47,6 @@ int g_CountNumber[SCORE_MAX];
 ------------------------------------------------------------------------------*/
 void InitScore(void)
 {
-	g_ScoreButton.Pos.x = (SCORE_SIZE_X);
-	g_ScoreButton.Pos.x = (SCORE_SIZE_Y) + 150;
-
 	g_ScoreTextureIndex = LoadTexture("texture/number.png");
 
 	/*g_BGMIndex = LoadSound("sound/bgm01.WAV");
@@ -62,17 +65,36 @@ void UninitScore(void)
 /*------------------------------------------------------------------------------
 更新処理をする関数
 ------------------------------------------------------------------------------*/
-void UpdateScore(void)
+void UpdateScore(int addScore)
 {
 	/*char str[256];
 	sprintf_s(str, "ポイント: %d Score: %d \n", ScorePointContainer, ScorePointCharge);
 	OutputDebugString(str);*/
 	/*char str[256];
-	sprintf_s(str, " %d \n", SCOREFONT_POS_X);
+	sprintf_s(str, " %f \n", byouga);
 	OutputDebugString(str);*/
-	//char str[256];
-	//sprintf_s(str, " %d \n", SCOREFONT_POS_X);
-	//OutputDebugString(str);
+
+	int ScoreChenge = 0;
+	
+	ScorePointCharge += addScore;
+	ScoreChenge = ScorePointCharge;
+	byouga1 = (float)ScoreChenge / 10;
+
+	if (ScorePointCharge >= 10)
+	{
+		byouga2 = (float)ScoreChenge / 100;
+	}
+	if (ScorePointCharge >= 100)
+	{
+		byouga3 = (float)ScoreChenge / 1000;
+	}
+
+	/*char str[256];
+	sprintf_s(str, " %f \n", byouga2);
+	OutputDebugString(str);*/
+	char str[256];
+	sprintf_s(str, " %f \n", byouga3);
+	OutputDebugString(str);
 }
 
 /*------------------------------------------------------------------------------
@@ -80,56 +102,122 @@ void UpdateScore(void)
 ------------------------------------------------------------------------------*/
 void DrawScore(void)
 {
+	DrawSprite(g_ScoreTextureIndex,
+		SCOREFONT_POS_X + 30, SCOREFONT_POS_Y,
+		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		byouga7, 0.0f,
+		0.1f, 1.0f);
 
-	for (int i = 0; i < _countof(g_CountNumber); i++)
-	{
-		DrawSprite(g_ScoreTextureIndex,
-			SCOREFONT_POS_X, SCOREFONT_POS_Y,
-			SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
-			0.1f + (i % 10), 0.0f,
-			0.1f, 1.0f);
-		ScorePointCharge += ScorePointContainer;
-	}
+	
+	DrawSprite(g_ScoreTextureIndex,
+		 SCOREFONT_POS_X + 60, SCOREFONT_POS_Y,
+		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		byouga6, 0.0f,
+		0.1f, 1.0f);
 
 
-	/*if (ScorePointContainer != 0)
-	{
-		ScorePointCharge += ScorePointContainer;
-		for (int n = 0; n < ScorePointCharge; n++)
-		{
+	DrawSprite(g_ScoreTextureIndex,
+		 SCOREFONT_POS_X + 90, SCOREFONT_POS_Y,
+		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		byouga5, 0.0f,
+		0.1f, 1.0f);
 
-			for (int i = 0; i < sizeof(g_Shift); i++)
-			{
-				DrawSprite(g_ScoreTextureIndex,
-					SCOREFONT_POS_X, SCOREFONT_POS_Y,
-					SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
-					0.0f, 0.0f,
-					0.1f, 1.0f);
-				
-			}
-		}
+	
+	DrawSprite(g_ScoreTextureIndex,
+		 SCOREFONT_POS_X + 120, SCOREFONT_POS_Y,
+		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		byouga4, 0.0f,
+		0.1f, 1.0f);
 
-		ScorePointContainer = 0;
-	}
-	else
-	{
-		for (int i = 0; i < sizeof(g_Shift); i++)
-		{
-			DrawSprite(g_ScoreTextureIndex,
-				SCOREFONT_POS_X, SCOREFONT_POS_Y,
-				SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
-				0.0f, 0.0f,
-				0.1f, 1.0f);
-		}
-	}*/
+	DrawSprite(g_ScoreTextureIndex,
+		 SCOREFONT_POS_X + 150, SCOREFONT_POS_Y,
+		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		byouga3, 0.0f,
+		0.1f, 1.0f);
+
+
+	DrawSprite(g_ScoreTextureIndex,
+		 SCOREFONT_POS_X + 180, SCOREFONT_POS_Y,
+		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		byouga2, 0.0f,
+		0.1f, 1.0f);
+
+
+	DrawSprite(g_ScoreTextureIndex,
+		 SCOREFONT_POS_X + 210, SCOREFONT_POS_Y,
+		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		byouga1, 0.0f,
+		0.1f, 1.0f);
 }
+
+//switch (g_r)
+//{
+//case 0:
+//	g_SetTexture = g_ScoreTextureIndex1;
+//	DrawSprite(g_SetTexture,
+//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
+//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+//		byouga, 0.0f,
+//		0.1f, 1.0f);
+//	break;
+//case 1:
+//	g_SetTexture = g_ScoreTextureIndex2;
+//	DrawSprite(g_SetTexture,
+//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
+//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+//		byouga, 0.0f,
+//		0.1f, 1.0f);
+//	break;
+//case 2:
+//	g_SetTexture = g_ScoreTextureIndex3;
+//	DrawSprite(g_SetTexture,
+//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
+//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+//		byouga, 0.0f,
+//		0.1f, 1.0f);
+//	break;
+//case 3:
+//	g_SetTexture = g_ScoreTextureIndex4;
+//	DrawSprite(g_SetTexture,
+//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
+//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+//		byouga, 0.0f,
+//		0.1f, 1.0f);
+//	break;
+//case 4:
+//	g_SetTexture = g_ScoreTextureIndex5;
+//	DrawSprite(g_SetTexture,
+//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
+//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+//		byouga, 0.0f,
+//		0.1f, 1.0f);
+//	break;
+//case 5:
+//	g_SetTexture = g_ScoreTextureIndex6;
+//	DrawSprite(g_SetTexture,
+//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
+//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+//		byouga, 0.0f,
+//		0.1f, 1.0f);
+//	break;
+//case 6:
+//	g_SetTexture = g_ScoreTextureIndex7;
+//	DrawSprite(g_SetTexture,
+//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
+//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+//		byouga, 0.0f,
+//		0.1f, 1.0f);
+//	break;
+//
+//default:
+//	char str[256];
+//	sprintf_s(str, "エラー \n");
+//	OutputDebugString(str);
+//	break;
+//}
+//		}
 
 //int ShiftScorePos()
 //{
 //
 //}
-int SetScorePoint(int index)
-{
-	ScorePointContainer = index;
-	return ScorePointContainer;
-}

@@ -62,8 +62,6 @@ void UpdateGame(HWND hWnd)
 	UpdatePuzzle3(hWnd);
 	UpdatePuzzle4(hWnd);
 	UpdatePuzzle5(hWnd);
-
-	UpdateScore();
 	//‘S‚Ä‚ÌˆÚ“®ˆ—‚ªI‚í‚Á‚Ä‚©‚ç“–‚½‚è”»’è‚ğs‚¤
 	//UpdateCollision();
 
