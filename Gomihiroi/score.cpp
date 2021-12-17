@@ -82,11 +82,13 @@ void UpdateScore(int addScore)
 
 	if (ScorePointCharge >= 10)
 	{
-		byouga2 = (float)ScoreChenge / 100;
+		ScoreChenge = byouga1;
+		byouga2 = (float)ScoreChenge / 10;
 	}
 	if (ScorePointCharge >= 100)
 	{
-		byouga3 = (float)ScoreChenge / 1000;
+		ScoreChenge = byouga2;
+		byouga3 = (float)ScoreChenge / 10;
 	}
 
 	/*char str[256];
