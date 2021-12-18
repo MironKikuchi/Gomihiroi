@@ -1,13 +1,15 @@
 #include "scene.h"
 #include "title.h"
 #include "game.h"
+#include "highscoreresult.h"
+#include "normalresult.h"
 
 
 
 /*------------------------------------------------------------------------------
 グローバル変数の定義
 ------------------------------------------------------------------------------*/
-static SCENE g_SceneIndex = SCENE_GAME;
+static SCENE g_SceneIndex = SCENE_NONE;
 static SCENE g_ScenePrevIndex = g_SceneIndex;
 static SCENE g_SceneNextIndex = g_SceneIndex;
 
@@ -30,10 +32,18 @@ void InitScene(SCENE index)
 
 	case SCENE_GAME:
 		InitGame();
-		g_ScenePrevIndex = SCENE_GAME;
 		break;
 
+	case SCENE_RESULT:
+		break;
 
+	case SCENE_HIGHRESULT:
+		InitHighResult();
+		break;
+
+	case SCENE_NORMAL:
+		InitNormalResult();
+		break;
 	}
 }
 
@@ -55,6 +65,16 @@ void UninitScene(void)
 		UninitGame();
 		break;
 
+	case SCENE_RESULT:
+		break;
+
+	case SCENE_HIGHRESULT:
+		UninitHighResult();
+		break;
+
+	case SCENE_NORMAL:
+		UninitNormalResult();
+		break;
 	}
 }
 
@@ -76,9 +96,20 @@ void UpdateScene(HWND hWnd)
 		UpdateGame(hWnd);
 		break;
 
-	}
+	case SCENE_RESULT:
+		break;
+
+	case SCENE_HIGHRESULT:
+		UpdateHighResult(hWnd);
+		break;
+	
+	case SCENE_NORMAL:
+		UpdateNormalResult(hWnd);
+		break;
 
 	//UpdateFade();
+	}
+
 }
 
 /*------------------------------------------------------------------------------
@@ -100,6 +131,16 @@ void DrawScene(void)
 		DrawGame();
 		break;
 
+	case SCENE_RESULT:
+		break;
+
+	case SCENE_HIGHRESULT:
+		DrawHighResult();
+		break;
+
+	case SCENE_NORMAL:
+		DrawNormalResult();
+		break;
 	}
 
 	//DrawFade();

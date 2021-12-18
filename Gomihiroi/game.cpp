@@ -1,9 +1,10 @@
 #include <windows.h>
 #include <stdio.h>
-#include "game.h"
 #include "main.h"
 #include "DirectX.h"
 #include "scene.h"
+#include "Title.h"
+#include "game.h"
 //#include "fade.h"
 //#include "sound.h"
 #include "texture.h"
@@ -15,8 +16,12 @@
 #include "input.h"
 #include "sprite.h"
 #include "score.h"
+#include "level.h"
+#include "timeLimit.h"
 
 static int g_BgTextureIndex;
+static int g_SubBgTextureIndex;
+static int g_FrameTextureIndex;
 static int g_BGMIndex = 0;
 
 /*------------------------------------------------------------------------------
@@ -24,14 +29,19 @@ static int g_BGMIndex = 0;
 ------------------------------------------------------------------------------*/
 void InitGame(void)
 {
+	
 	g_BgTextureIndex = LoadTexture("texture/car_road.png");
-	InitPuzzle();
-	InitPuzzle2();
-	InitPuzzle3();
-	InitPuzzle4();
-	InitPuzzle5();
+	g_SubBgTextureIndex = LoadTexture("texture/white.jpeg");
+	g_FrameTextureIndex = LoadTexture("texture/Waku.png");
+	InitDust();
+	InitBanana();
+	InitBook();
+	InitTrash();
+	InitFridge();
 
 	InitScore();
+	InitLevel();
+	InitTime();
 	//g_BGMIndex = LoadSound("sound/bgm01.wav");
 
 	// クリアカラーを水色に変更
@@ -43,13 +53,15 @@ void InitGame(void)
 ------------------------------------------------------------------------------*/
 void UninitGame(void)
 {
-	UninitPuzzle();
-	UninitPuzzle2();
-	UninitPuzzle3();
-	UninitPuzzle4();
-	UninitPuzzle5();
+	UninitDust();
+	UninitBanana();
+	UninitBook();
+	UninitTrash();
+	UninitFridge();
 
 	UninitScore();
+	UninitLevel();
+	UninitTime();
 }
 
 /*------------------------------------------------------------------------------
@@ -57,14 +69,11 @@ void UninitGame(void)
 ------------------------------------------------------------------------------*/
 void UpdateGame(HWND hWnd)
 {
-	UpdatePuzzle(hWnd);
-	UpdatePuzzle2(hWnd);
-	UpdatePuzzle3(hWnd);
-	UpdatePuzzle4(hWnd);
-	UpdatePuzzle5(hWnd);
-	//全ての移動処理が終わってから当たり判定を行う
-	//UpdateCollision();
-
+	UpdateDust(hWnd);
+	UpdateBanana(hWnd);
+	UpdateBook(hWnd);
+	UpdateTrash(hWnd);
+	UpdateFridge(hWnd);
 
 }
 
@@ -80,12 +89,33 @@ void DrawGame(void)
 		1.0f, 1.0f);
 
 
-	DrawPuzzle();
-	DrawPuzzle2();
-	DrawPuzzle3();
-	DrawPuzzle4();
-	DrawPuzzle5();
+	DrawDust();
+	DrawBanana();
+	DrawBook();
+	DrawTrash();
+	DrawFridge();
+
+	DrawSprite(g_SubBgTextureIndex,
+		SCREEN_HALFWIDTH, SCREEN_HEIGHT,
+		SCREEN_WIDTH, SCREEN_HALFHEIGHT,
+		0.0f, 0.0f,
+		1.0f, 1.0f);
+
+	DrawSprite(g_FrameTextureIndex,
+		SCREEN_HALFWIDTH - 200, SCREEN_HEIGHT - 100,
+		SCREEN_HALFWIDTH - 150, SCREEN_HALFHEIGHT - 350,
+		0.0f, 0.0f,
+		1.0f, 1.0f);
+
+	DrawSprite(g_FrameTextureIndex,
+		SCREEN_HALFWIDTH - 80, SCREEN_HEIGHT - 100,
+		SCREEN_HALFWIDTH - 150, SCREEN_HALFHEIGHT - 350,
+		0.0f, 0.0f,
+		1.0f, 1.0f);
 
 	DrawScore();
+	DrawLevel();
+
+	DrawTime();
 }
 

@@ -1,14 +1,16 @@
 #pragma once
 #pragma warning(suppress : 5208)
 
-#include "PuzzleBlock.h"
+#define FRIDGE_SIZE_X 80
+#define FRIDGE_SIZE_Y 80
+#define FRIDGECOUNT_SIZE 15
 
+#define SCREEN_TOP 0
 
-void InitPuzzle5(void);
-void UninitPuzzle5(void);
-void UpdatePuzzle5(HWND hWnd);
-void DrawPuzzle5(void);
+void InitFridge(void);
+void SetRandomFridge(int index);
+void UninitFridge(void);
+void UpdateFridge(HWND hWnd);
+void DrawFridge(void);
 
-bool IsActivePuzzle5(void);
-void SetActivePuzzle5(int flag);
-void PuzzleSetMouse5(int index);
+void FridgeSetMouse(int index);

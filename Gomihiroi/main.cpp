@@ -11,6 +11,8 @@
 #include "PuzzleBlock3.h"
 #include "PuzzleBlock4.h"
 #include "PuzzleBlock5.h"
+#include "timelimit.h"
+#include "highscoreresult.h"
 //#include "sound.h"
 //#include "fade.h"
 //#include "goalscene.h"
@@ -116,7 +118,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	////シーンの初期化（タイトルからスタート）
 	////SceneFadeIn(SCENE_GAME1_1);
-	InitScene(SCENE_GAME);
+	InitScene(SCENE_TITLE);
 
 	//デバッグ文字列の初期化
 	//InitDebugProc();
@@ -210,12 +212,13 @@ void Update(HWND hWnd)
 	//左クリックされたか？
 	int onClick = (GetKeyState(VK_LBUTTON) & 0x80) ? 1 : 0;
 	TitleSetMouse(onClick);
-	PuzzleSetMouse(onClick);
-	PuzzleSetMouse2(onClick);
-	PuzzleSetMouse3(onClick);
-	PuzzleSetMouse4(onClick);
-	PuzzleSetMouse5(onClick);
-
+	DustSetMouse(onClick);
+	BananaSetMouse(onClick);
+	BookSetMouse(onClick);
+	TrashSetMouse(onClick);
+	FridgeSetMouse(onClick);
+	HighResultSetMouse(onClick);
+	
 	UpdateScene(hWnd);
 }
 

@@ -3,13 +3,18 @@
 #include "input.h"
 #include "main.h"
 #include "sprite.h"
+#include "score.h"
+#include "level.h"
+#include "timelimit.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 
 /*------------------------------------------------------------------------------
 構造体宣言
 ------------------------------------------------------------------------------*/
-typedef struct PUZZLE_T
+typedef struct TRASH_T
 {
 	int		Isdisp = false;
 	D3DXVECTOR2 pos;
@@ -22,33 +27,44 @@ typedef struct PUZZLE_T
 /*------------------------------------------------------------------------------
 グローバル変数の定義
 ------------------------------------------------------------------------------*/
-static PUZZLE_T g_PuzzleBlock4;
-
-static int g_DustTextureIndex;
-
-static int mouse4 = 0;
+static TRASH_T g_Trash[TRASHCOUNT_SIZE];
+static int g_TextureIndex;
+static int mouse = 0;
+static int Frame;
+unsigned int TrashNowTime = (unsigned int)time(NULL);
 
 /*------------------------------------------------------------------------------
 初期化関数
 ------------------------------------------------------------------------------*/
-void InitPuzzle4(void)
+void InitTrash(void)
 {
-	g_PuzzleBlock4.pos.x = SCREEN_HALFWIDTH + 100;
-	g_PuzzleBlock4.pos.y = 0;
-	g_PuzzleBlock4.Isdisp = false;
+	srand(TrashNowTime);//初期化
 
 	//フルパスfull pathではなくて
 	//相対パスを指定する
-	g_DustTextureIndex = LoadTexture("texture/Gomi.jpg");
+	g_TextureIndex = LoadTexture("texture/Gomibukuro.png");
 
+	for (int i = 0; i < _countof(g_Trash); i++)
+	{
+		SetRandomTrash(i);
+		g_Trash[i].Isdisp = false;
+	}
+}
 
-	g_PuzzleBlock4.Isdisp = true;
+/*------------------------------------------------------------------------------
+ブロックのX軸をランダムでセッツ
+------------------------------------------------------------------------------*/
+void SetRandomTrash(int index)
+{
+	int randomposX = rand() % SCREEN_WIDTH;
+	g_Trash[index].pos.x = randomposX;
+	g_Trash[index].pos.y = SCREEN_TOP;
 }
 
 /*------------------------------------------------------------------------------
 終了処理をする関数
 ------------------------------------------------------------------------------*/
-void UninitPuzzle4()
+void UninitTrash()
 {
 
 }
@@ -56,10 +72,21 @@ void UninitPuzzle4()
 /*------------------------------------------------------------------------------
 更新処理をする関数
 ------------------------------------------------------------------------------*/
-void UpdatePuzzle4(HWND hWnd)
+void UpdateTrash(HWND hWnd)
 {
-
-	g_PuzzleBlock4.pos.y += g_PuzzleBlock4.speed.y;
+	Frame += 1;
+	if ((Frame % 300) == 0)
+	{
+		for (int i = 0; i < TRASHCOUNT_SIZE; i++)
+		{
+			if (g_Trash[i].Isdisp == false)
+			{
+				SetRandomTrash(i);
+				g_Trash[i].Isdisp = true;
+				break;
+			}
+		}
+	}
 
 	POINT mouse_p;
 	//マウスの座標ゲッツ
@@ -67,95 +94,116 @@ void UpdatePuzzle4(HWND hWnd)
 	//マウスの座標をスクリーンからクライアント(ウィンドウ)へ
 	ScreenToClient(hWnd, &mouse_p);
 
+	/*char str[256];
+	sprintf_s(str, "PosX: %d PosY: %d \n", mouse_p.x, mouse_p.y);
+	OutputDebugString(str);*/
 
-	//画像のボタンの当たり判定
-	if (mouse_p.x < (g_PuzzleBlock4.pos.x + PUZZLEHALF_SIZE_X) && mouse_p.x >= (g_PuzzleBlock4.pos.x - PUZZLEHALF_SIZE_X) &&
-		mouse_p.y < (g_PuzzleBlock4.pos.y + PUZZLEHALF_SIZE_Y) && mouse_p.y >= (g_PuzzleBlock4.pos.y - PUZZLEHALF_SIZE_Y))
+
+	for (int i = 0; i < _countof(g_Trash); i++)
 	{
-		if (mouse4 == 1)
+
+		if (!g_Trash[i].Isdisp)
 		{
-			g_PuzzleBlock4.Isdisp = false;
+			continue;
 		}
-	}
-	else
-	{
-		mouse4 = 0;
+
+		g_Trash[i].pos.y += g_Trash[i].speed.y;
+
+		//画像がクリックされたら
+		if (mouse == 1 && GetLevel() >= LEVEL_TRASH)
+		{
+			if (mouse_p.x < (g_Trash[i].pos.x + TRASH_SIZE_X) && mouse_p.x >= (g_Trash[i].pos.x - TRASH_SIZE_X) &&
+				mouse_p.y < (g_Trash[i].pos.y + TRASH_SIZE_Y) && mouse_p.y >= (g_Trash[i].pos.y - TRASH_SIZE_Y))
+			{
+				g_Trash[i].Isdisp = false;
+				g_Trash[i].pos.y = 0;
+				UpdateScore(100);
+			}
+		}
+		else if (mouse == 1 && GetLevel() < LEVEL_TRASH)
+		{
+			if (mouse_p.x < (g_Trash[i].pos.x + TRASH_SIZE_X) && mouse_p.x >= (g_Trash[i].pos.x - TRASH_SIZE_X) &&
+				mouse_p.y < (g_Trash[i].pos.y + TRASH_SIZE_Y) && mouse_p.y >= (g_Trash[i].pos.y - TRASH_SIZE_Y))
+			{
+				UpdateTime(5);
+			}
+		}
+
+		//画像が下に行ったら初期値にする
+		if (g_Trash[i].pos.y > SCREEN_HEIGHT - 220)
+		{
+			g_Trash[i].Isdisp = false;
+			g_Trash[i].pos.y = SCREEN_TOP;
+		}
 	}
 
 }
+
 
 /*------------------------------------------------------------------------------
 描画処理をする関数
 ------------------------------------------------------------------------------*/
 
-void DrawPuzzle4(void)
+void DrawTrash(void)
 {
-	LPDIRECT3DDEVICE9 pDevice;
-	pDevice = GetDevice();
 
-	// 頂点データ
-	Vertex2D PuzzleBlock3[] = {
-		{//左上
-			D3DXVECTOR4((float)g_PuzzleBlock4.pos.x - PUZZLEHALF_SIZE_X, (float)g_PuzzleBlock4.pos.y - PUZZLEHALF_SIZE_Y, 0.0f, 1.0f),
-			D3DXCOLOR(1.0f,1.0f,1.0f,1.0f),
-			D3DXVECTOR2(0.0f,0.0f),
-		},
-		{//右上
-			D3DXVECTOR4((float)g_PuzzleBlock4.pos.x + PUZZLEHALF_SIZE_X, (float)g_PuzzleBlock4.pos.y - PUZZLEHALF_SIZE_Y,0.0f,1.0f),
-			D3DXCOLOR(1.0f,1.0f,1.0f,1.0f),
-			D3DXVECTOR2(1.0f,0.0f),
-		},
-		{//左下
-			D3DXVECTOR4((float)g_PuzzleBlock4.pos.x - PUZZLEHALF_SIZE_X, (float)g_PuzzleBlock4.pos.y + PUZZLEHALF_SIZE_Y,0.0f,1.0f),
-			D3DXCOLOR(1.0f,1.0f,1.0f,1.0f),
-			D3DXVECTOR2(0.0f,1.0f),
-		},
-		{//右下
-			D3DXVECTOR4((float)g_PuzzleBlock4.pos.x + PUZZLEHALF_SIZE_X, (float)g_PuzzleBlock4.pos.y + PUZZLEHALF_SIZE_Y,0.0f,1.0f),
-			D3DXCOLOR(1.0f,1.0f,1.0f,1.0f),
-			D3DXVECTOR2(1.0f,1.0f),
-		}
-	};
-
-
-	//ポリゴンとテクスチャを対応させる
-	LPDIRECT3DTEXTURE9 pTexture;
-	//欲しいテクスチャの整理番号を伝える
-	pTexture = GetTexture(g_DustTextureIndex);
-	pDevice->SetTexture(0, pTexture);
-	pDevice->SetFVF(FVF_VERTEX2D);
-
-
-	if (g_PuzzleBlock4.Isdisp == true)
+	for (int i = 0; i < _countof(g_Trash); i++)
 	{
-		pDevice->DrawPrimitiveUP(
-			D3DPT_TRIANGLESTRIP,
-			2,
-			PuzzleBlock3,
-			sizeof(Vertex2D)
-		);
+		if (!g_Trash[i].Isdisp)
+		{
+			continue;
+		}
+
+		LPDIRECT3DDEVICE9 pDevice;
+		pDevice = GetDevice();
+
+
+		// 頂点データ
+		Vertex2D Trash[] = {
+			{//左上
+				D3DXVECTOR4((float)g_Trash[i].pos.x - TRASH_SIZE_X, (float)g_Trash[i].pos.y - TRASH_SIZE_Y, 0.0f, 1.0f),
+				D3DXCOLOR(1.0f,1.0f,1.0f,1.0f),
+				D3DXVECTOR2(0.0f,0.0f),
+			},
+			{//右上
+				D3DXVECTOR4((float)g_Trash[i].pos.x + TRASH_SIZE_X, (float)g_Trash[i].pos.y - TRASH_SIZE_Y,0.0f,1.0f),
+				D3DXCOLOR(1.0f,1.0f,1.0f,1.0f),
+				D3DXVECTOR2(1.0f,0.0f),
+			},
+			{//左下
+				D3DXVECTOR4((float)g_Trash[i].pos.x - TRASH_SIZE_X, (float)g_Trash[i].pos.y + TRASH_SIZE_Y,0.0f,1.0f),
+				D3DXCOLOR(1.0f,1.0f,1.0f,1.0f),
+				D3DXVECTOR2(0.0f,1.0f),
+			},
+			{//右下
+				D3DXVECTOR4((float)g_Trash[i].pos.x + TRASH_SIZE_X, (float)g_Trash[i].pos.y + TRASH_SIZE_Y,0.0f,1.0f),
+				D3DXCOLOR(1.0f,1.0f,1.0f,1.0f),
+				D3DXVECTOR2(1.0f,1.0f),
+			}
+		};
+
+		//ポリゴンとテクスチャを対応させる
+		LPDIRECT3DTEXTURE9 pTexture;
+		//欲しいテクスチャの整理番号を伝える
+		pTexture = GetTexture(g_TextureIndex);
+		pDevice->SetTexture(0, pTexture);
+		pDevice->SetFVF(FVF_VERTEX2D);
+
+
+		if (g_Trash[i].Isdisp == true)
+		{
+			pDevice->DrawPrimitiveUP(
+				D3DPT_TRIANGLESTRIP,
+				2,
+				Trash,
+				sizeof(Vertex2D)
+			);
+		}
+
 	}
-
 }
 
-
-/*------------------------------------------------------------------------------
-敵の有効フラグを渡す
-------------------------------------------------------------------------------*/
-bool IsActivePuzzle4(void)
+void TrashSetMouse(int index)
 {
-	return g_PuzzleBlock4.Isdisp;
-}
-
-/*------------------------------------------------------------------------------
-敵の有効フラグを設定する
-------------------------------------------------------------------------------*/
-void SetActivePuzzle4(int flag)
-{
-	g_PuzzleBlock4.Isdisp = flag;
-}
-
-void PuzzleSetMouse4(int index)
-{
-	mouse4 = index;
+	mouse = index;
 }

@@ -1,14 +1,18 @@
 #pragma once
 #pragma warning(suppress : 5208)
 
-#include "PuzzleBlock.h"
+#define BOOK_SIZE_X 48
+#define BOOK_SIZE_Y 48
+#define BOOKCOUNT_SIZE 15
+
+#define SCREEN_TOP 0
 
 
-void InitPuzzle3(void);
-void UninitPuzzle3(void);
-void UpdatePuzzle3(HWND hWnd);
-void DrawPuzzle3(void);
+void InitBook(void);
+void SetRandomBookPos(int index);
+void UninitBook(void);
+void UpdateBook(HWND hWnd);
+void DrawBook(void);
 
-bool IsActivePuzzle3(void);
-void SetActivePuzzle3(int flag);
-void PuzzleSetMouse3(int index);
+
+void BookSetMouse(int index);

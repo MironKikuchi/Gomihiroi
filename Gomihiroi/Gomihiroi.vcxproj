@@ -153,33 +153,41 @@
   <ItemGroup>
     <ClCompile Include="DirectX.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="highscoreresult.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PuzzleBlock.cpp" />
     <ClCompile Include="PuzzleBlock2.cpp" />
     <ClCompile Include="PuzzleBlock3.cpp" />
     <ClCompile Include="PuzzleBlock4.cpp" />
     <ClCompile Include="PuzzleBlock5.cpp" />
+    <ClCompile Include="normalresult.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="score.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="texture.cpp" />
+    <ClCompile Include="timelimit.cpp" />
     <ClCompile Include="title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectX.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="highscoreresult.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="level.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="PuzzleBlock.h" />
     <ClInclude Include="PuzzleBlock2.h" />
     <ClInclude Include="PuzzleBlock3.h" />
     <ClInclude Include="PuzzleBlock4.h" />
     <ClInclude Include="PuzzleBlock5.h" />
+    <ClInclude Include="normalresult.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="score.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="texture.h" />
+    <ClInclude Include="timelimit.h" />
     <ClInclude Include="title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

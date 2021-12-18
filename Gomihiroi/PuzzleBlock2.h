@@ -1,14 +1,18 @@
 #pragma once
 #pragma warning(suppress : 5208)
 
-#include "PuzzleBlock.h"
+#define BANANA_SIZE_X 32
+#define BANANA_SIZE_Y 32
+#define BANANACOUNT_SIZE 15
+
+#define SCREEN_TOP 0
 
 
-void InitPuzzle2(void);
-void UninitPuzzle2(void);
-void UpdatePuzzle2(HWND hWnd);
-void DrawPuzzle2(void);
+void InitBanana(void);
+void SetRandomBananaPos(int index);
+void UninitBanana(void);
+void UpdateBanana(HWND hWnd);
+void DrawBanana(void);
 
-bool IsActivePuzzle2(void);
-void SetActivePuzzle2(int flag);
-void PuzzleSetMouse2(int index);
+
+void BananaSetMouse(int index);

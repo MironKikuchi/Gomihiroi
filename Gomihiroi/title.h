@@ -1,8 +1,8 @@
 #pragma once
 
 
-#define TITLEFONT_SIZE_X 256
-#define TITLEFONT_SIZE_Y 144
+#define TITLEFONT_SIZE_X 256 + 256
+#define TITLEFONT_SIZE_Y 256 + 256
 #define TITLEBUTTON_SIZE_X 192
 #define TITLEBUTTON_SIZE_Y 96
 

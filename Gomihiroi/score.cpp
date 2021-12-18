@@ -5,6 +5,9 @@
 #include "texture.h"
 #include "sprite.h"
 #include "score.h"
+#include "level.h"
+#include "highscoreresult.h"
+#include "normalresult.h"
 
 
 /*------------------------------------------------------------------------------
@@ -74,6 +77,7 @@ void UpdateScore(int addScore)
 	sprintf_s(str, " %f \n", byouga);
 	OutputDebugString(str);*/
 
+	int i = 0;
 	int ScoreChenge = 0;
 	
 	ScorePointCharge += addScore;
@@ -90,13 +94,35 @@ void UpdateScore(int addScore)
 		ScoreChenge = byouga2;
 		byouga3 = (float)ScoreChenge / 10;
 	}
+	if (ScorePointCharge >= 1000)
+	{
+		ScoreChenge = byouga3;
+		byouga4 = (float)ScoreChenge / 10;
+	}
+	if (ScorePointCharge >= 10000)
+	{
+		ScoreChenge = byouga4;
+		byouga5= (float)ScoreChenge / 10;
+	}
+	if (ScorePointCharge >= 100000)
+	{
+		ScoreChenge = byouga5;
+		byouga6 = (float)ScoreChenge / 10;
+	}
+	if (ScorePointCharge >= 1000000)
+	{
+		ScoreChenge = byouga6;
+		byouga7 = (float)ScoreChenge / 10;
+	}
 
+	i += addScore;
+	UpdateLevel(i);
+
+	SetScore(ScorePointCharge);
 	/*char str[256];
-	sprintf_s(str, " %f \n", byouga2);
+	sprintf_s(str, " %d \n", ScorePointCharge);
 	OutputDebugString(str);*/
-	char str[256];
-	sprintf_s(str, " %f \n", byouga3);
-	OutputDebugString(str);
+
 }
 
 /*------------------------------------------------------------------------------
@@ -151,75 +177,3 @@ void DrawScore(void)
 		byouga1, 0.0f,
 		0.1f, 1.0f);
 }
-
-//switch (g_r)
-//{
-//case 0:
-//	g_SetTexture = g_ScoreTextureIndex1;
-//	DrawSprite(g_SetTexture,
-//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
-//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
-//		byouga, 0.0f,
-//		0.1f, 1.0f);
-//	break;
-//case 1:
-//	g_SetTexture = g_ScoreTextureIndex2;
-//	DrawSprite(g_SetTexture,
-//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
-//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
-//		byouga, 0.0f,
-//		0.1f, 1.0f);
-//	break;
-//case 2:
-//	g_SetTexture = g_ScoreTextureIndex3;
-//	DrawSprite(g_SetTexture,
-//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
-//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
-//		byouga, 0.0f,
-//		0.1f, 1.0f);
-//	break;
-//case 3:
-//	g_SetTexture = g_ScoreTextureIndex4;
-//	DrawSprite(g_SetTexture,
-//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
-//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
-//		byouga, 0.0f,
-//		0.1f, 1.0f);
-//	break;
-//case 4:
-//	g_SetTexture = g_ScoreTextureIndex5;
-//	DrawSprite(g_SetTexture,
-//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
-//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
-//		byouga, 0.0f,
-//		0.1f, 1.0f);
-//	break;
-//case 5:
-//	g_SetTexture = g_ScoreTextureIndex6;
-//	DrawSprite(g_SetTexture,
-//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
-//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
-//		byouga, 0.0f,
-//		0.1f, 1.0f);
-//	break;
-//case 6:
-//	g_SetTexture = g_ScoreTextureIndex7;
-//	DrawSprite(g_SetTexture,
-//		g_ScoreNumber[i].Pos.x, g_ScoreNumber[i].Pos.y,
-//		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
-//		byouga, 0.0f,
-//		0.1f, 1.0f);
-//	break;
-//
-//default:
-//	char str[256];
-//	sprintf_s(str, "ÉGÉâÅ[ \n");
-//	OutputDebugString(str);
-//	break;
-//}
-//		}
-
-//int ShiftScorePos()
-//{
-//
-//}
