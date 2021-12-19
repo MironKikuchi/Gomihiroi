@@ -66,7 +66,12 @@ void SetRandomFridge(int index)
 ------------------------------------------------------------------------------*/
 void UninitFridge()
 {
-
+	srand(FridgeNowTime);
+	for (int i = 0; i < _countof(g_Fridge); i++)
+	{
+		SetRandomFridge(i);
+		g_Fridge[i].Isdisp = false;
+	}
 }
 
 /*------------------------------------------------------------------------------

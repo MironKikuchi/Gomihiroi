@@ -66,7 +66,12 @@ void SetRandomBookPos(int index)
 ------------------------------------------------------------------------------*/
 void UninitBook()
 {
-
+	srand(BookNowTime);
+	for (int i = 0; i < _countof(g_Book); i++)
+	{
+		SetRandomBookPos(i);
+		g_Book[i].Isdisp = false;
+	}
 }
 
 /*------------------------------------------------------------------------------

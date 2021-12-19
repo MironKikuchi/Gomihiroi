@@ -26,6 +26,7 @@ typedef struct
 static TIMELIMIT_T g_TimeGage;
 
 static int g_TimeTextureIndex;
+static int g_Waku;
 
 static int TimeLimit;
 
@@ -49,6 +50,7 @@ clock_t TimeStart;
 void InitTime(void)
 {
 	g_TimeTextureIndex = LoadTexture("texture/Gage.png");
+	g_Waku = LoadTexture("texture/Waku.png");
 
 	g_TimeGage.Pos.x = TIMEFONT_POS_X;
 	g_TimeGage.Pos.y = TIMEFONT_POS_Y;
@@ -63,7 +65,12 @@ void InitTime(void)
 ------------------------------------------------------------------------------*/
 void UninitTime(void)
 {
+	g_TimeGage.Pos.x = TIMEFONT_POS_X;
+	g_TimeGage.Pos.y = TIMEFONT_POS_Y;
 
+	TimeLimit = TIME_LIMIT;
+
+	TimeStart = clock();
 }
 
 /*------------------------------------------------------------------------------
@@ -85,9 +92,7 @@ void UpdateTime(int addpenalty)
 	i = TimeCount;
 	j += addpenalty;
 	b += TimeCount + addpenalty;
-	/*char str[256];
-	sprintf_s(str, " %f \n", TimeCount);
-	OutputDebugString(str);*/
+
 }
 
 /*------------------------------------------------------------------------------
@@ -95,6 +100,11 @@ void UpdateTime(int addpenalty)
 ------------------------------------------------------------------------------*/
 void DrawTime(void)
 {
+	DrawSprite(g_Waku,
+		SCREEN_HALFWIDTH + 150, 50,
+		SCREEN_HALFWIDTH, SCREEN_HALFHEIGHT - 460,
+		0.0f, 0.0f,
+		1.0f, 1.0f);
 
 	LPDIRECT3DDEVICE9 pDevice;
 	pDevice = GetDevice();
@@ -139,5 +149,7 @@ void DrawTime(void)
 		Gage,
 		sizeof(Vertex2D)
 	);
+
+	
 
 }

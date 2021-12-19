@@ -29,6 +29,7 @@ static int g_ScoreTextureIndex;
 
 
 static int ScorePointCharge = 0;
+static int ScoreChenge = 0;
 
 //ÉãÅ[ÉvÇµÇΩêîÇì¸ÇÍÇÈ
 int g_Shift = 0;
@@ -50,7 +51,7 @@ float byouga7;
 ------------------------------------------------------------------------------*/
 void InitScore(void)
 {
-	g_ScoreTextureIndex = LoadTexture("texture/number.png");
+	g_ScoreTextureIndex = LoadTexture("texture/Newnumber.png");
 
 	/*g_BGMIndex = LoadSound("sound/bgm01.WAV");
 
@@ -62,7 +63,8 @@ void InitScore(void)
 ------------------------------------------------------------------------------*/
 void UninitScore(void)
 {
-
+	ScorePointCharge = 0;
+	ScoreChenge = 0;
 }
 
 /*------------------------------------------------------------------------------
@@ -78,7 +80,7 @@ void UpdateScore(int addScore)
 	OutputDebugString(str);*/
 
 	int i = 0;
-	int ScoreChenge = 0;
+	ScoreChenge = 0;
 	
 	ScorePointCharge += addScore;
 	ScoreChenge = ScorePointCharge;
@@ -131,49 +133,49 @@ void UpdateScore(int addScore)
 void DrawScore(void)
 {
 	DrawSprite(g_ScoreTextureIndex,
-		SCOREFONT_POS_X + 30, SCOREFONT_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCORE_FONT_POS_X +  SCORE_NUMBER_X,  SCORE_NUMBER_Y,
+		SCORE_FONT_SIZE_X, SCORE_FONT_SIZE_Y,
 		byouga7, 0.0f,
 		0.1f, 1.0f);
 
 	
 	DrawSprite(g_ScoreTextureIndex,
-		 SCOREFONT_POS_X + 60, SCOREFONT_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCORE_FONT_POS_X +  SCORE_NUMBER_X * 2,  SCORE_NUMBER_Y,
+		SCORE_FONT_SIZE_X, SCORE_FONT_SIZE_Y,
 		byouga6, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_ScoreTextureIndex,
-		 SCOREFONT_POS_X + 90, SCOREFONT_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCORE_FONT_POS_X +  SCORE_NUMBER_X * 3,  SCORE_NUMBER_Y,
+		SCORE_FONT_SIZE_X, SCORE_FONT_SIZE_Y,
 		byouga5, 0.0f,
 		0.1f, 1.0f);
 
 	
 	DrawSprite(g_ScoreTextureIndex,
-		 SCOREFONT_POS_X + 120, SCOREFONT_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCORE_FONT_POS_X +  SCORE_NUMBER_X * 4,  SCORE_NUMBER_Y,
+		SCORE_FONT_SIZE_X, SCORE_FONT_SIZE_Y,
 		byouga4, 0.0f,
 		0.1f, 1.0f);
 
 	DrawSprite(g_ScoreTextureIndex,
-		 SCOREFONT_POS_X + 150, SCOREFONT_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCORE_FONT_POS_X +  SCORE_NUMBER_X * 5,  SCORE_NUMBER_Y,
+		SCORE_FONT_SIZE_X, SCORE_FONT_SIZE_Y,
 		byouga3, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_ScoreTextureIndex,
-		 SCOREFONT_POS_X + 180, SCOREFONT_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCORE_FONT_POS_X +  SCORE_NUMBER_X * 6, SCORE_NUMBER_Y,
+		SCORE_FONT_SIZE_X, SCORE_FONT_SIZE_Y,
 		byouga2, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_ScoreTextureIndex,
-		 SCOREFONT_POS_X + 210, SCOREFONT_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCORE_FONT_POS_X +  SCORE_NUMBER_X * 7, SCORE_NUMBER_Y,
+		SCORE_FONT_SIZE_X, SCORE_FONT_SIZE_Y,
 		byouga1, 0.0f,
 		0.1f, 1.0f);
 }

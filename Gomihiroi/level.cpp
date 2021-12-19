@@ -53,7 +53,8 @@ void InitLevel(void)
 ------------------------------------------------------------------------------*/
 void UninitLevel(void)
 {
-
+	g_SetTextureIndex = g_DustTexture;
+	g_SetNextTextureIndex = g_BananaTexture;
 }
 
 /*------------------------------------------------------------------------------
@@ -79,13 +80,13 @@ void UpdateLevel(int addLevel)
 void DrawLevel(void)
 {
 	DrawSprite(g_SetNextTextureIndex,
-		SCREEN_HALFWIDTH - 80, SCREEN_HEIGHT - 100,
+		SCREEN_HALFWIDTH - 80, 150,
 		SCREEN_HALFWIDTH - 150, SCREEN_HALFHEIGHT - 350,
 		0.0f, 0.0f,
 		1.0f, 1.0f);
 
 	DrawSprite(g_SetTextureIndex,
-		SCREEN_HALFWIDTH - 200, SCREEN_HEIGHT - 100,
+		SCREEN_HALFWIDTH - 200, 150,
 		SCREEN_HALFWIDTH - 150, SCREEN_HALFHEIGHT - 350,
 		0.0f, 0.0f,
 		1.0f, 1.0f);

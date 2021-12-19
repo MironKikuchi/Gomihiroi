@@ -66,7 +66,12 @@ void SetRandomTrash(int index)
 ------------------------------------------------------------------------------*/
 void UninitTrash()
 {
-
+	srand(TrashNowTime);
+	for (int i = 0; i < _countof(g_Trash); i++)
+	{
+		SetRandomTrash(i);
+		g_Trash[i].Isdisp = false;
+	}
 }
 
 /*------------------------------------------------------------------------------

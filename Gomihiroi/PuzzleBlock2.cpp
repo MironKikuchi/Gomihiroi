@@ -66,7 +66,12 @@ void SetRandomBananaPos(int index)
 ------------------------------------------------------------------------------*/
 void UninitBanana()
 {
-
+	srand(BananaNowTime);
+	for (int i = 0; i < _countof(g_Banana); i++)
+	{
+		SetRandomBananaPos(i);
+		g_Banana[i].Isdisp = false;
+	}
 }
 
 /*------------------------------------------------------------------------------

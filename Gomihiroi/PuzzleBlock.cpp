@@ -66,7 +66,12 @@ void SetRandomDustPos(int index)
 ------------------------------------------------------------------------------*/
 void UninitDust()
 {
-
+	srand(DustNowTime);
+	for (int i = 0; i < _countof(g_DustBlock); i++)
+	{
+		SetRandomDustPos(i);
+		g_DustBlock[i].Isdisp = false;
+	}
 }
 
 /*------------------------------------------------------------------------------
@@ -141,10 +146,10 @@ void UpdateDust(HWND hWnd)
 		// }
 
 		//‰æ‘œ‚ª‰º‚És‚Á‚½‚ç‰Šú’l‚É‚·‚é
-		if (g_DustBlock[i].pos.y > SCREEN_HEIGHT - 220)
+		if (g_DustBlock[i].pos.y > SCREEN_HEIGHT + 20)
 		{
 			g_DustBlock[i].Isdisp = false;
-			g_DustBlock[i].pos.y = SCREEN_TOP;
+			g_DustBlock[i].pos.y = SCREEN_TOP + 220;
 		}
 	}
 	

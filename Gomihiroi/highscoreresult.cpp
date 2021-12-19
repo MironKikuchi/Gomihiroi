@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <Windows.h>
 #include <stdio.h>
 #include "DirectX.h"
@@ -11,6 +12,7 @@
 #include "title.h"
 #include "score.h"
 #include "highscoreresult.h"
+
 
 
 /*------------------------------------------------------------------------------
@@ -43,7 +45,7 @@ float g_High1000000byouga;
 
 static int g_1stScoreTextureIndex;
 static int g_1stScoreNumberTextureIndex;
-float g_1stbyouga;
+float	g_1stbyouga;
 float g_1st10byouga;
 float g_1st100byouga;
 float g_1st1000byouga;
@@ -97,6 +99,7 @@ static int g_ExitTextureIndex;
 
 static int g_BGMIndex = 0;
 static int g_HighScore = 0;
+//static int g_Save
 static int mouse;
 
 
@@ -109,31 +112,31 @@ void InitHighResult(void)
 	g_HighResultButton.Pos.y = (HIGH_RESULTBUTTON_HALF_SIZE_Y)+150;
 
 	g_BgTextureIndex = LoadTexture("texture/Title.png");
-	g_ResultTextureIndex = LoadTexture("texture/SceneFont5");
+	g_ResultTextureIndex = LoadTexture("texture/Result.png");
 
 	//直近のハイスコアのフォントと数字
-	g_HighScoreFontTextureIndex = LoadTexture("texture/PLAY_BUTTON.png");
-	g_HighScoreNumberTextureIndex = LoadTexture("texture/number.png");
+	g_HighScoreFontTextureIndex = LoadTexture("texture/Highscore.png");
+	g_HighScoreNumberTextureIndex = LoadTexture("texture/Newnumber.png");
 
 	//1位のフォントとハイスコアの数字
-	g_1stScoreTextureIndex = LoadTexture("texture/PLAY_BUTTON.png");
-	g_1stScoreNumberTextureIndex = LoadTexture("texture/number.png");
+	g_1stScoreTextureIndex = LoadTexture("texture/1st.png");
+	g_1stScoreNumberTextureIndex = LoadTexture("texture/Newnumber.png");
 
 	//2位のフォントとハイスコアの数字
-	g_2ndScoreTextureIndex = LoadTexture("texture/PLAY_BUTTON.png");
-	g_2ndScoreNumberTextureIndex = LoadTexture("texture/number.png");
+	g_2ndScoreTextureIndex = LoadTexture("texture/2nd.png");
+	g_2ndScoreNumberTextureIndex = LoadTexture("texture/Newnumber.png");
 
 	//3位のフォントとハイスコアの数字
-	g_3rdScoreTextureIndex = LoadTexture("texture/PLAY_BUTTON.png");
-	g_3rdScoreNumberTextureIndex = LoadTexture("texture/number.png");
+	g_3rdScoreTextureIndex = LoadTexture("texture/3rd.png");
+	g_3rdScoreNumberTextureIndex = LoadTexture("texture/Newnumber.png");
 
 	//4位のフォントとハイスコアの数字
-	g_4thScoreTextureIndex = LoadTexture("texture/PLAY_BUTTON.png");
-	g_4thScoreNumberTextureIndex = LoadTexture("texture/number.png");
+	g_4thScoreTextureIndex = LoadTexture("texture/4th.png");
+	g_4thScoreNumberTextureIndex = LoadTexture("texture/Newnumber.png");
 
 	//5位のフォントとハイスコアの数字
-	g_5thScoreTextureIndex = LoadTexture("texture/PLAY_BUTTON.png");
-	g_5thScoreNumberTextureIndex = LoadTexture("texture/number.png");
+	g_5thScoreTextureIndex = LoadTexture("texture/5th.png");
+	g_5thScoreNumberTextureIndex = LoadTexture("texture/Newnumber.png");
 
 	g_ExitTextureIndex = LoadTexture("texture/EXIT_BUTTON.png");
 
@@ -147,7 +150,54 @@ void InitHighResult(void)
 ------------------------------------------------------------------------------*/
 void UninitHighResult(void)
 {
+	g_HighScore			= 0;
+	g_Highbyouga		= 0.0f;
+	g_High10byouga		= 0.0f;
+	g_High100byouga		= 0.0f;
+	g_High1000byouga	= 0.0f;
+	g_High10000byouga	= 0.0f;
+	g_High100000byouga	= 0.0f;
+	g_High1000000byouga = 0.0f;
 
+	g_1stbyouga		    = 0.0f;
+	g_1st10byouga	    = 0.0f;
+	g_1st100byouga	    = 0.0f;
+	g_1st1000byouga     = 0.0f;
+	g_1st10000byouga	= 0.0f;
+	g_1st100000byouga	= 0.0f;
+	g_1st1000000byouga	= 0.0f;
+
+	g_2ndbyouga			= 0.0f;
+	g_2nd10byouga		= 0.0f;
+	g_2nd100byouga		= 0.0f;
+	g_2nd1000byouga		= 0.0f;
+	g_2nd10000byouga	= 0.0f;
+	g_2nd100000byouga	= 0.0f;
+	g_2nd1000000byouga	= 0.0f;
+
+	g_3rdbyouga			= 0.0f;
+	g_3rd10byouga		= 0.0f;
+	g_3rd100byouga		= 0.0f;
+	g_3rd1000byouga		= 0.0f;
+	g_3rd10000byouga	= 0.0f;
+	g_3rd100000byouga	= 0.0f;
+	g_3rd1000000byouga	= 0.0f;
+
+	g_4thbyouga			= 0.0f;
+	g_4th10byouga		= 0.0f;
+	g_4th100byouga		= 0.0f;
+	g_4th1000byouga		= 0.0f;
+	g_4th10000byouga	= 0.0f;
+	g_4th100000byouga	= 0.0f;
+	g_4th1000000byouga	= 0.0f;
+
+	g_5thbyouga			= 0.0f;
+	g_5th10byouga		= 0.0f;
+	g_5th100byouga		= 0.0f;
+	g_5th1000byouga		= 0.0f;
+	g_5th10000byouga	= 0.0f;
+	g_5th100000byouga	= 0.0f;
+	g_5th1000000byouga	= 0.0f;
 }
 
 /*------------------------------------------------------------------------------
@@ -262,14 +312,14 @@ void DrawHighResult(void)
 		0.0f, 0.0f,
 		1.0f, 1.0f);
 
-	/*DrawSprite(g_ResultTextureIndex,
-		(TITLEFONT_SIZE_X) + 60, (TITLEFONT_SIZE_Y)+60,
-		TITLEFONT_SIZE_X, TITLEFONT_SIZE_Y,
+	DrawSprite(g_ResultTextureIndex,
+		(SCREEN_HALFWIDTH), (SCREEN_HALFHEIGHT)-380,
+		HIGH_RESULTFONT_SIZE_X, HIGH_RESULTFONT_SIZE_Y,
 		0.0f, 0.0f,
-		1.0f, 1.0f);*/
+		1.0f, 1.0f);
 
 	DrawSprite(g_ExitTextureIndex,
-		(SCREEN_HALFWIDTH), (SCREEN_HALFHEIGHT) - 100,
+		(SCREEN_HALFWIDTH), (SCREEN_HALFHEIGHT) - 50,
 		EXITBUTTON_SIZE_X, EXITBUTTON_SIZE_Y,
 		0.0, 0.0f,
 		1.0f, 1.0f);
@@ -278,54 +328,54 @@ void DrawHighResult(void)
 
 	//ハイスコアの表示場所
 	DrawSprite(g_HighScoreFontTextureIndex,
-		(SCREEN_HALFWIDTH), (SCREEN_HALFHEIGHT) -300,
-		TITLEBUTTON_SIZE_X, TITLEBUTTON_SIZE_Y,
+		(SCREEN_HALFWIDTH), (SCREEN_HALFHEIGHT) -250,
+		HIGH_SCORE_SIZE_X, HIGH_SCORE_SIZE_Y,
 		0.0, 0.0f,
 		1.0f, 1.0f);
-
+	
 	DrawSprite(g_HighScoreNumberTextureIndex,
-		SCOREFONT_POS_X - 90, SCOREFONT_POS_Y - 560,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH - 120,(SCREEN_HALFHEIGHT) -HIGH_SCORE_NUMBER_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_High1000000byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_HighScoreNumberTextureIndex,
-		SCOREFONT_POS_X - 60, SCOREFONT_POS_Y - 560,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH - 80,(SCREEN_HALFHEIGHT) -HIGH_SCORE_NUMBER_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_High100000byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_HighScoreNumberTextureIndex,
-		SCOREFONT_POS_X - 30, SCOREFONT_POS_Y - 560,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH - 40,(SCREEN_HALFHEIGHT) -HIGH_SCORE_NUMBER_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_High10000byouga, 0.0f,
 		0.1f, 1.0f);
 
 	DrawSprite(g_HighScoreNumberTextureIndex,
-		SCOREFONT_POS_X, SCOREFONT_POS_Y - 560,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH, SCREEN_HALFHEIGHT - HIGH_SCORE_NUMBER_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_High1000byouga, 0.0f,
 		0.1f, 1.0f);
 
 	DrawSprite(g_HighScoreNumberTextureIndex,
-		SCOREFONT_POS_X + 30, SCOREFONT_POS_Y - 560,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 40,(SCREEN_HALFHEIGHT) -HIGH_SCORE_NUMBER_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_High100byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_HighScoreNumberTextureIndex,
-		SCOREFONT_POS_X + 60, SCOREFONT_POS_Y - 560,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 80,(SCREEN_HALFHEIGHT) -HIGH_SCORE_NUMBER_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_High10byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_HighScoreNumberTextureIndex,
-		SCOREFONT_POS_X + 90, SCOREFONT_POS_Y - 560,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 120,(SCREEN_HALFHEIGHT) -HIGH_SCORE_NUMBER_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_Highbyouga, 0.0f,
 		0.1f, 1.0f);
 
@@ -341,47 +391,47 @@ void DrawHighResult(void)
 
 	DrawSprite(g_1stScoreNumberTextureIndex,
 		SCREEN_HALFWIDTH, SCREEN_HALFHEIGHT + HIGH_1ST_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_1st1000000byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_1stScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 30, SCREEN_HALFHEIGHT + HIGH_1ST_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 40, SCREEN_HALFHEIGHT + HIGH_1ST_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_1st100000byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_1stScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 60, SCREEN_HALFHEIGHT + HIGH_1ST_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 80, SCREEN_HALFHEIGHT + HIGH_1ST_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_1st10000byouga, 0.0f,
 		0.1f, 1.0f);
 
 	DrawSprite(g_1stScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 90, SCREEN_HALFHEIGHT + HIGH_1ST_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 120, SCREEN_HALFHEIGHT + HIGH_1ST_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_1st1000byouga, 0.0f,
 		0.1f, 1.0f);
 
 	DrawSprite(g_1stScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 120, SCREEN_HALFHEIGHT + HIGH_1ST_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 160, SCREEN_HALFHEIGHT + HIGH_1ST_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_1st100byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_1stScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 150, SCREEN_HALFHEIGHT + HIGH_1ST_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 200, SCREEN_HALFHEIGHT + HIGH_1ST_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_1st10byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_1stScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 180, SCREEN_HALFHEIGHT + HIGH_1ST_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 240, SCREEN_HALFHEIGHT + HIGH_1ST_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_1stbyouga, 0.0f,
 		0.1f, 1.0f);
 
@@ -395,47 +445,47 @@ void DrawHighResult(void)
 
 	DrawSprite(g_2ndScoreNumberTextureIndex,
 		SCREEN_HALFWIDTH, SCREEN_HALFHEIGHT + HIGH_2ND_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_2nd1000000byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_2ndScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 30, SCREEN_HALFHEIGHT + HIGH_2ND_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 40, SCREEN_HALFHEIGHT + HIGH_2ND_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_2nd100000byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_2ndScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 60, SCREEN_HALFHEIGHT + HIGH_2ND_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 80, SCREEN_HALFHEIGHT + HIGH_2ND_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_2nd10000byouga, 0.0f,
 		0.1f, 1.0f);
 
 	DrawSprite(g_2ndScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 90, SCREEN_HALFHEIGHT + HIGH_2ND_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 120, SCREEN_HALFHEIGHT + HIGH_2ND_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_2nd1000byouga, 0.0f,
 		0.1f, 1.0f);
 
 	DrawSprite(g_2ndScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 120, SCREEN_HALFHEIGHT + HIGH_2ND_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 160, SCREEN_HALFHEIGHT + HIGH_2ND_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_2nd100byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_2ndScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 150, SCREEN_HALFHEIGHT + HIGH_2ND_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 200, SCREEN_HALFHEIGHT + HIGH_2ND_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_2nd10byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_2ndScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 180, SCREEN_HALFHEIGHT + HIGH_2ND_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 240, SCREEN_HALFHEIGHT + HIGH_2ND_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_2ndbyouga, 0.0f,
 		0.1f, 1.0f);
 //////////////////////////////////////////////////////////////////////
@@ -448,47 +498,47 @@ void DrawHighResult(void)
 
 	DrawSprite(g_3rdScoreNumberTextureIndex,
 		SCREEN_HALFWIDTH, SCREEN_HALFHEIGHT + HIGH_3RD_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_3rd1000000byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_3rdScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 30, SCREEN_HALFHEIGHT + HIGH_3RD_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 40, SCREEN_HALFHEIGHT + HIGH_3RD_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_3rd100000byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_3rdScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 60, SCREEN_HALFHEIGHT + HIGH_3RD_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 80, SCREEN_HALFHEIGHT + HIGH_3RD_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_3rd10000byouga, 0.0f,
 		0.1f, 1.0f);
 
 	DrawSprite(g_3rdScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 90, SCREEN_HALFHEIGHT + HIGH_3RD_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 120, SCREEN_HALFHEIGHT + HIGH_3RD_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_3rd1000byouga, 0.0f,
 		0.1f, 1.0f);
 
 	DrawSprite(g_3rdScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 120, SCREEN_HALFHEIGHT + HIGH_3RD_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 160, SCREEN_HALFHEIGHT + HIGH_3RD_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_3rd100byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_3rdScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 150, SCREEN_HALFHEIGHT + HIGH_3RD_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 200, SCREEN_HALFHEIGHT + HIGH_3RD_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_3rd10byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_3rdScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 180, SCREEN_HALFHEIGHT + HIGH_3RD_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 240, SCREEN_HALFHEIGHT + HIGH_3RD_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_3rdbyouga, 0.0f,
 		0.1f, 1.0f);
 //////////////////////////////////////////////////////////////////////
@@ -501,47 +551,47 @@ void DrawHighResult(void)
 	
 	DrawSprite(g_4thScoreNumberTextureIndex,
 		SCREEN_HALFWIDTH, SCREEN_HALFHEIGHT + HIGH_4TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_4th1000000byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_4thScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 30, SCREEN_HALFHEIGHT + HIGH_4TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 40, SCREEN_HALFHEIGHT + HIGH_4TH_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_4th100000byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_4thScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 60, SCREEN_HALFHEIGHT + HIGH_4TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 80, SCREEN_HALFHEIGHT + HIGH_4TH_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_4th10000byouga, 0.0f,
 		0.1f, 1.0f);
 
 	DrawSprite(g_4thScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 90, SCREEN_HALFHEIGHT + HIGH_4TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 120, SCREEN_HALFHEIGHT + HIGH_4TH_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_4th1000byouga, 0.0f,
 		0.1f, 1.0f);
 
 	DrawSprite(g_4thScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 120, SCREEN_HALFHEIGHT + HIGH_4TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 160, SCREEN_HALFHEIGHT + HIGH_4TH_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_4th100byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_4thScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 150, SCREEN_HALFHEIGHT + HIGH_4TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 200, SCREEN_HALFHEIGHT + HIGH_4TH_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_4th10byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_4thScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 180, SCREEN_HALFHEIGHT + HIGH_4TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 240, SCREEN_HALFHEIGHT + HIGH_4TH_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_4thbyouga, 0.0f,
 		0.1f, 1.0f);
 //////////////////////////////////////////////////////////////////////
@@ -554,47 +604,47 @@ void DrawHighResult(void)
 
 	DrawSprite(g_5thScoreNumberTextureIndex,
 		SCREEN_HALFWIDTH, SCREEN_HALFHEIGHT + HIGH_5TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_5th1000000byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_5thScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 30, SCREEN_HALFHEIGHT + HIGH_5TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 40, SCREEN_HALFHEIGHT + HIGH_5TH_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_5th100000byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_5thScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 60, SCREEN_HALFHEIGHT + HIGH_5TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 80, SCREEN_HALFHEIGHT + HIGH_5TH_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_5th10000byouga, 0.0f,
 		0.1f, 1.0f);
 
 	DrawSprite(g_5thScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 90, SCREEN_HALFHEIGHT + HIGH_5TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 120, SCREEN_HALFHEIGHT + HIGH_5TH_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_5th1000byouga, 0.0f,
 		0.1f, 1.0f);
 
 	DrawSprite(g_5thScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 120, SCREEN_HALFHEIGHT + HIGH_5TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 160, SCREEN_HALFHEIGHT + HIGH_5TH_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_5th100byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_5thScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 150, SCREEN_HALFHEIGHT + HIGH_5TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 200, SCREEN_HALFHEIGHT + HIGH_5TH_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_5th10byouga, 0.0f,
 		0.1f, 1.0f);
 
 
 	DrawSprite(g_5thScoreNumberTextureIndex,
-		SCREEN_HALFWIDTH + 180, SCREEN_HALFHEIGHT + HIGH_5TH_POS_Y,
-		SCOREFONT_SIZE_X, SCOREFONT_SIZE_Y,
+		SCREEN_HALFWIDTH + 240, SCREEN_HALFHEIGHT + HIGH_5TH_POS_Y,
+		HIGH_SCORE_NUMBER_SIZE_X, HIGH_SCORE_NUMBER_SIZE_Y,
 		g_5thbyouga, 0.0f,
 		0.1f, 1.0f);
 }
@@ -607,8 +657,39 @@ void HighResultSetMouse(int index)
 void SetScore(int index)
 {
 	g_HighScore = index;
+	FILE* fp;
+	fp = fopen("score.txt", "r");
+	if (fp != NULL)
+	{
+		fscanf(fp, "%d", g_HighScore);
+		fclose(fp);
+	}
+	if (fp == NULL || g_HighScore < index)
+	{
+		fp = fopen("score.txt", "w");
+		fprintf(fp, "%d", index);
+		fclose(fp);
+	}
 	return;
 }
+
+//void RefreshScore(int score)
+//{
+//	FILE* fp;
+//	int hiscore;
+//	fp = fopen("score.txt", "r");
+//	if (fp != NULL)
+//	{
+//		fscanf(fp, "%d", &hiscore);
+//		fclose(fp);
+//	}
+//	if (fp == NULL || hiscore < score)
+//	{
+//		fp = fopen("score.txt", "w");
+//		fprintf(fp, "%d", score);
+//		fclose(fp);
+//	}
+//}
 
 //int GetScore(void)
 //{

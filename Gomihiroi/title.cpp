@@ -57,6 +57,8 @@ void InitTitle(void)
 ------------------------------------------------------------------------------*/
 void UninitTitle(void)
 {
+	g_TitleButton.Pos.x = (TITLEBG_HALF_SIZE_X);
+	g_TitleButton.Pos.y = (TITLEBG_HALF_SIZE_Y)+150;
 
 }
 

@@ -1,0 +1,5 @@
+﻿  PuzzleBlock.cpp
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(23,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'DUST_T' の左辺を無視します。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(60,29): warning C4244: '=': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(223,32): warning C4805: '==': 演算中の 'int' 型と 'bool' 型の混用は安全ではありません
+  Gomihiroi.vcxproj -> C:\Users\miron\Projects\Gomihiroi\Debug\Gomihiroi.exe
