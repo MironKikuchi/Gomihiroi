@@ -43,5 +43,6 @@ void UpdateHighResult(HWND hWnd);
 void DrawHighResult(void);
 
 void HighResultSetMouse(int index);
-void SetScore(int index);
-void RefreshScore(int score);
+void SetHighScore(int index);
+void SaveHighScore(int score);
+int PassHighScore(void);

@@ -7,6 +7,8 @@
 #include "texture.h"
 #include "scene.h"
 #include "sprite.h"
+#include "highscoreresult.h"
+#include "normalresult.h"
 
 
 
@@ -36,6 +38,8 @@ static int i = 0;
 static int j = 0;
 static int b = 0;
 
+static int g_HighScoreJudge = 0;
+static int g_NormalScoreJudge = 0;
 
 float Timer1 = 0.0f;
 float Timer2 = 0.0f;
@@ -85,8 +89,16 @@ void UpdateTime(int addpenalty)
 	TimeLimit -= addpenalty;
 	if(TimeCount > TimeLimit)
 	{
-		SetScene(SCENE_HIGHRESULT);
-		CheckScene();
+		if (g_HighScoreJudge >= g_NormalScoreJudge)
+		{
+			SetScene(SCENE_HIGHRESULT);
+			CheckScene();
+		}
+		else
+		{
+			SetScene(SCENE_NORMAL);
+			CheckScene();
+		}
 	}
 
 	i = TimeCount;
@@ -149,7 +161,14 @@ void DrawTime(void)
 		Gage,
 		sizeof(Vertex2D)
 	);
+}
 
-	
+void HighScoreJudge(int highscore)
+{
+	g_HighScoreJudge = highscore;
+}
 
+void NormalScoreJudge(int normalscore)
+{
+	g_NormalScoreJudge = normalscore;
 }

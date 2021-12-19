@@ -43,9 +43,9 @@ void InitTitle(void)
 	g_TitleButton.Pos.y = (TITLEBG_HALF_SIZE_Y) + 150;
 
 	g_BgTextureIndex = LoadTexture("texture/Title.png");
-	g_TitleTextureIndex = LoadTexture("texture/TitleFont.png");
-	g_StartTextureIndex = LoadTexture("texture/PLAY_BUTTON.png");
-	g_ExitTextureIndex = LoadTexture("texture/EXIT_BUTTON.png");
+	g_TitleTextureIndex = LoadTexture("texture/Title02.png");
+	g_StartTextureIndex = LoadTexture("texture/Play.png");
+	g_ExitTextureIndex = LoadTexture("texture/Rizart.png");
 
 	/*g_BGMIndex = LoadSound("sound/bgm01.WAV");
 
@@ -78,8 +78,8 @@ void UpdateTitle(HWND hWnd)
 	OutputDebugString(str);
 
 	//タイトルのボタンの当たり判定
-	if (mouse_p.x < (SCREEN_HALFWIDTH + TITLEBUTTON_HALF_SIZE_X) && mouse_p.x >= (SCREEN_HALFWIDTH - TITLEBUTTON_HALF_SIZE_X) &&
-		mouse_p.y < (SCREEN_HALFHEIGHT + TITLEBUTTON_HALF_SIZE_Y) + 300 && mouse_p.y >= (SCREEN_HALFHEIGHT - TITLEBUTTON_HALF_SIZE_Y) + 300)
+	if (mouse_p.x < BUTTON_COLLISION_RIGHT && mouse_p.x >= BUTTON_COLLISION_LEFT &&
+		mouse_p.y < BUTTON_COLLISION_DOWN && mouse_p.y >= BUTTON_COLLISION_UP)
 	{
 		if (mouse == 1)
 		{
@@ -108,7 +108,7 @@ void DrawTitle(void)
 		1.0f, 1.0f);
 
 	DrawSprite(g_StartTextureIndex,
-		(SCREEN_HALFWIDTH), (SCREEN_HALFHEIGHT) + 300,
+		(SCREEN_HALFWIDTH), (SCREEN_HALFHEIGHT) + 200,
 		TITLEBUTTON_SIZE_X, TITLEBUTTON_SIZE_Y,
 		0.0, 0.0f,
 		1.0f, 1.0f);

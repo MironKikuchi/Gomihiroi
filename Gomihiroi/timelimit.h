@@ -20,3 +20,5 @@ void InitTime(void);
 void UninitTime(void);
 void UpdateTime(int addpenalty);
 void DrawTime(void);
+void HighScoreJudge(int highscore); 
+void NormalScoreJudge(int normalscore);

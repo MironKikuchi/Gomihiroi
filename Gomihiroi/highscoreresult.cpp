@@ -11,6 +11,7 @@
 #include "sprite.h"
 #include "title.h"
 #include "score.h"
+#include "timelimit.h"
 #include "highscoreresult.h"
 
 
@@ -96,10 +97,15 @@ float g_5th1000000byouga;
 //タイトルに戻るボタン
 static int g_ExitTextureIndex;
 
+static int g_1stChenge = 0;
+static int g_2stChenge = 0;
+static int g_3stChenge = 0;
+static int g_4stChenge = 0;
+static int g_5stChenge = 0;
 
 static int g_BGMIndex = 0;
 static int g_HighScore = 0;
-//static int g_Save
+static int g_HighScorePass = 0;
 static int mouse;
 
 
@@ -227,6 +233,8 @@ void UpdateHighResult(HWND hWnd)
 	}
 
 	int NumberChenge = 0;
+
+	
 
 	NumberChenge = g_HighScore;
 	char str[256];
@@ -654,41 +662,105 @@ void HighResultSetMouse(int index)
 	mouse = index;
 }
 
-void SetScore(int index)
+void SetHighScore(int index)
 {
 	g_HighScore = index;
-	FILE* fp;
-	fp = fopen("score.txt", "r");
-	if (fp != NULL)
-	{
-		fscanf(fp, "%d", g_HighScore);
-		fclose(fp);
-	}
-	if (fp == NULL || g_HighScore < index)
-	{
-		fp = fopen("score.txt", "w");
-		fprintf(fp, "%d", index);
-		fclose(fp);
-	}
-	return;
+	SaveHighScore(g_HighScore);
 }
 
-//void RefreshScore(int score)
+void SaveHighScore(int score)
+{
+	int i;
+	FILE *fp;
+	fp = fopen("1stscore.txt", "r");
+	fscanf(fp, "%d", &i);
+	HighScoreJudge(score);
+	if (i < score)
+	{
+		fp = fopen("1stscore.txt", "w");
+		fprintf(fp, "%d", score);
+		fclose(fp);
+		g_1stChenge = score;
+
+		g_1stbyouga = (float)g_1stChenge / 10;
+
+		if (g_HighScore >= 10)
+		{
+			g_1stChenge = g_1stbyouga;
+			g_1st10byouga = (float)g_1stChenge / 10;
+		}
+		if (g_HighScore >= 100)
+		{
+			g_1stChenge = g_1st10byouga;
+			g_1st100byouga = (float)g_1stChenge / 10;
+		}
+		if (g_HighScore >= 1000)
+		{
+			g_1stChenge = g_1st100byouga;
+			g_1st1000byouga = (float)g_1stChenge / 10;
+		}
+		if (g_HighScore >= 10000)
+		{
+			g_1stChenge = g_1st1000byouga;
+			g_1st10000byouga = (float)g_1stChenge / 10;
+		}
+		if (g_HighScore >= 100000)
+		{
+			g_1stChenge = g_1st10000byouga;
+			g_1st100000byouga = (float)g_1stChenge / 10;
+		}
+		if (g_HighScore >= 1000000)
+		{
+			g_1stChenge = g_1st100000byouga;
+			g_1st1000000byouga = (float)g_1stChenge / 10;
+		}
+	}
+	else
+	{
+		g_1stChenge = i;
+
+		g_1stbyouga = (float)g_1stChenge / 10;
+
+		if (g_HighScore >= 10)
+		{
+			g_1stChenge = g_1stbyouga;
+			g_1st10byouga = (float)g_1stChenge / 10;
+		}
+		if (g_HighScore >= 100)
+		{
+			g_1stChenge = g_1st10byouga;
+			g_1st100byouga = (float)g_1stChenge / 10;
+		}
+		if (g_HighScore >= 1000)
+		{
+			g_1stChenge = g_1st100byouga;
+			g_1st1000byouga = (float)g_1stChenge / 10;
+		}
+		if (g_HighScore >= 10000)
+		{
+			g_1stChenge = g_1st1000byouga;
+			g_1st10000byouga = (float)g_1stChenge / 10;
+		}
+		if (g_HighScore >= 100000)
+		{
+			g_1stChenge = g_1st10000byouga;
+			g_1st100000byouga = (float)g_1stChenge / 10;
+		}
+		if (g_HighScore >= 1000000)
+		{
+			g_1stChenge = g_1st100000byouga;
+			g_1st1000000byouga = (float)g_1stChenge / 10;
+		}
+	}
+	//fp = fopen("1stscore.txt", "w");
+ 	
+	fclose(fp);
+	
+}
+
+//int PassHighScore(void)
 //{
-//	FILE* fp;
-//	int hiscore;
-//	fp = fopen("score.txt", "r");
-//	if (fp != NULL)
-//	{
-//		fscanf(fp, "%d", &hiscore);
-//		fclose(fp);
-//	}
-//	if (fp == NULL || hiscore < score)
-//	{
-//		fp = fopen("score.txt", "w");
-//		fprintf(fp, "%d", score);
-//		fclose(fp);
-//	}
+//	return g_HighScorePass;
 //}
 
 //int GetScore(void)

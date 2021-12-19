@@ -118,7 +118,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	//シーンの初期化（タイトルからスタート）
 	//SceneFadeIn(SCENE_GAME1_1);
-	InitScene(SCENE_HIGHRESULT);
+	InitScene(SCENE_TITLE);
 
 	//デバッグ文字列の初期化
 	//InitDebugProc();

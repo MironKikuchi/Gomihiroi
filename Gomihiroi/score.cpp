@@ -120,7 +120,8 @@ void UpdateScore(int addScore)
 	i += addScore;
 	UpdateLevel(i);
 
-	SetScore(ScorePointCharge);
+	SetHighScore(ScorePointCharge);
+	SetNormalScore(ScorePointCharge);
 	/*char str[256];
 	sprintf_s(str, " %d \n", ScorePointCharge);
 	OutputDebugString(str);*/
