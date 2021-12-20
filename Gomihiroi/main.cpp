@@ -199,25 +199,49 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	//その他のメッセージはWindowsに任せる
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
-
+int onClick = 0;
+int OldClick = 0;
+int RespondToMouse = 0;
 /*------------------------------------------------------------------------------
 ゲームの更新
 ------------------------------------------------------------------------------*/
 void Update(HWND hWnd)
 {
-	Keyboard_Update();
-
-	//左クリックされたか？
-	int onClick = (GetKeyState(VK_LBUTTON) & 0x80) ? 1 : 0;
-	TitleSetMouse(onClick);
-	DustSetMouse(onClick);
-	BananaSetMouse(onClick);
-	BookSetMouse(onClick);
-	TrashSetMouse(onClick);
-	FridgeSetMouse(onClick);
-	HighResultSetMouse(onClick);
-	NormalResultSetMouse(onClick);
 	
+	Keyboard_Update();
+	
+	//左クリックされたか？
+	//int onClick = (GetKeyState(VK_LBUTTON) & 0x80) ? 1 : 0;
+	if ((onClick = GetKeyState(VK_LBUTTON) & 0x80) && RespondToMouse == 0)
+	{
+		onClick = 1;
+		TitleSetMouse(onClick);
+		DustSetMouse(onClick);
+		BananaSetMouse(onClick);
+		BookSetMouse(onClick);
+		TrashSetMouse(onClick);
+		FridgeSetMouse(onClick);
+		HighResultSetMouse(onClick);
+		NormalResultSetMouse(onClick);
+		PrevMouse(onClick);
+	}
+	else if(onClick = GetKeyState(VK_LBUTTON) & 0x80)
+	{
+		onClick = 0;
+		TitleSetMouse(onClick);
+		DustSetMouse(onClick);
+		BananaSetMouse(onClick);
+		BookSetMouse(onClick);
+		TrashSetMouse(onClick);
+		FridgeSetMouse(onClick);
+		HighResultSetMouse(onClick);
+		NormalResultSetMouse(onClick);
+	}
+	else
+	{
+		PrevMouse(0);
+	}
+
 	UpdateScene(hWnd);
 }
 
@@ -259,6 +283,10 @@ void Draw(void)
 	);
 }
 
+void PrevMouse(int index)
+{
+	RespondToMouse = index;
+}
 
 /*------------------------------------------------------------------------------
 Debug print

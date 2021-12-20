@@ -24,6 +24,8 @@ typedef struct Vertex2D_tag
 } Vertex2D;
 #define FVF_VERTEX2D (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1) // ２Dポリゴン頂点フォーマット
 
+void PrevMouse(int index);
+
 void DebugPrint(int i);
 void DebugPrint(float f);
 void DebugPrint(bool b);

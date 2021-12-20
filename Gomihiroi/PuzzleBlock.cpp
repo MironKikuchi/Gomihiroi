@@ -17,8 +17,7 @@ typedef struct DUST_T
 {
 	int			Isdisp = false;
 	D3DXVECTOR2 pos;
-	D3DXVECTOR2 speed = { 0, 1 };
-	D3DXVECTOR2 initspeed = { 0, 5.5 };
+	D3DXVECTOR2 speed;
 };
 
 
@@ -55,25 +54,19 @@ void InitDust(void)
 		SetDustUpPos(i);
 		SetDustRightPos(i);
 		SetDustLeftPos(i);
-		/*SetDustDownSpeed(i);
+		SetDustDownSpeed(i);
 		SetDustUpSpeed(i);
 		SetDustRightSpeed(i);
-		SetDustLeftSpeed(i);*/
+		SetDustLeftSpeed(i);
 		g_DustBlockDown[i].Isdisp = false;
-		g_DustBlockDown[i].initspeed = { 0, 5.5 };
-		g_DustBlockDown[i].speed = {0, 5.5};
-
 		g_DustBlockUp[i].Isdisp = false;
-		g_DustBlockUp[i].initspeed = { 0, 5.5 };
-		g_DustBlockUp[i].speed = { 0, 5.5 };
-
 		g_DustBlockRight[i].Isdisp = false;
-		g_DustBlockRight[i].initspeed = { 5.5, 0 };
-		g_DustBlockRight[i].speed = { 5.5, 0 };
-
 		g_DustBlockLeft[i].Isdisp = false;
-		g_DustBlockLeft[i].initspeed = { 5.5, 0 };
-		g_DustBlockLeft[i].speed = { 5.5, 0 };
+
+		//g_DustBlockDown[i].speed = {0, 5.5};
+		//g_DustBlockUp[i].speed = { 0, 5.5 };
+		//g_DustBlockRight[i].speed = { 5.5, 0 };
+		//g_DustBlockLeft[i].speed = { 5.5, 0 };
 	}
 
 	/*for (int i = 0; i < _countof(g_DustBlockUp); i++)
@@ -136,42 +129,45 @@ void SetDustLeftPos(int index)
 /*------------------------------------------------------------------------------
 ブロックのスピードをランダムでセッツ
 ------------------------------------------------------------------------------*/
-//void SetDustDownSpeed(int index)
-//{
-//	int randomSpeedX = rand() % 5 + 1;
-//	int randomSpeedY = rand() % 5 + 1;
-//
-//	g_DustBlockDown[index].speed.x = 0;
-//	g_DustBlockDown[index].speed.y = randomSpeedY;
-//}
-//
-//void SetDustUpSpeed(int index)
-//{
-//	int randomSpeedX = rand() % 5 + 1;
-//	int randomSpeedY = rand() % 5 + 1;
-//
-//	g_DustBlockDown[index].speed.x = 0;
-//	g_DustBlockDown[index].speed.y = randomSpeedY;
-//}
-//
-//void SetDustRightSpeed(int index)
-//{
-//
-//	int randomSpeedX = rand() % 5 + 1;
-//	int randomSpeedY = rand() % 5 + 1;
-//
-//	g_DustBlockDown[index].speed.x = randomSpeedX;
-//	g_DustBlockDown[index].speed.y = 0;
-//}
-//
-//void SetDustLeftSpeed(int index)
-//{
-//	int randomSpeedX = rand() % 5 + 1;
-//	int randomSpeedY = rand() % 5 + 1;
-//
-//	g_DustBlockDown[index].speed.x = randomSpeedX;
-//	g_DustBlockDown[index].speed.y = 0;
-//}
+void SetDustDownSpeed(int index)
+{
+	int randomSpeedX = rand() % 5 + 1;
+	int randomSpeedY = rand() % 5 + 1;
+
+	g_DustBlockDown[index].speed.x = 0;
+	g_DustBlockDown[index].speed.y = randomSpeedY;
+	/*char str[256];
+	sprintf_s(str, "PosY: %d \n", randomSpeedY);
+	OutputDebugString(str);*/
+}
+
+void SetDustUpSpeed(int index)
+{
+	int randomSpeedX = rand() % 5 + 1;
+	int randomSpeedY = rand() % 5 + 1;
+
+	g_DustBlockUp[index].speed.x = 0;
+	g_DustBlockUp[index].speed.y = randomSpeedY;
+}
+
+void SetDustRightSpeed(int index)
+{
+
+	int randomSpeedX = rand() % 5 + 1;
+	int randomSpeedY = rand() % 5 + 1;
+
+	g_DustBlockRight[index].speed.x = randomSpeedX;
+	g_DustBlockRight[index].speed.y = 0;
+}
+
+void SetDustLeftSpeed(int index)
+{
+	int randomSpeedX = rand() % 5 + 1;
+	int randomSpeedY = rand() % 5 + 1;
+
+	g_DustBlockLeft[index].speed.x = randomSpeedX;
+	g_DustBlockLeft[index].speed.y = 0;
+}
 
 
 
@@ -187,17 +183,17 @@ void UninitDust()
 		SetDustUpPos(i);
 		SetDustRightPos(i);
 		SetDustLeftPos(i);
+
 		g_DustBlockDown[i].Isdisp = false;
-		g_DustBlockDown[i].initspeed = { 0, 5.5 };
 		g_DustBlockDown[i].speed = { 0, 5.5 };
+
 		g_DustBlockUp[i].Isdisp = false;
-		g_DustBlockUp[i].initspeed = { 0, 5.5 };
 		g_DustBlockUp[i].speed = { 0, 5.5 };
+
 		g_DustBlockRight[i].Isdisp = false;
-		g_DustBlockRight[i].initspeed = { 5.5, 0 };
 		g_DustBlockRight[i].speed = { 5.5, 0 };
+
 		g_DustBlockLeft[i].Isdisp = false;
-		g_DustBlockLeft[i].initspeed = { 5.5, 0 };
 		g_DustBlockLeft[i].speed = { 5.5, 0 };
 	}
 }
@@ -219,26 +215,14 @@ void UpdateDust(HWND hWnd)
 			if (g_DustBlockDown[i].Isdisp == false)
 			{
 				SetDustDownPos(i);
-				//SetDustDownSpeed(i);
+				SetDustDownSpeed(i);
 				g_DustBlockDown[i].Isdisp = true;
-
-				SetDustUpPos(i);
-				//SetDustUpSpeed(i);
-				g_DustBlockUp[i].Isdisp = true;
-
-				SetDustRightPos(i);
-				//SetDustRightSpeed(i);
-				g_DustBlockRight[i].Isdisp = true;
-
-				SetDustLeftPos(i);
-				//SetDustLeftSpeed(i);
-				g_DustBlockLeft[i].Isdisp = true;
 				break;
 			}
 		}
 	}	
 	
-	/*if ((FrameU % 90) == 0)
+	if ((FrameU % 90) == 0)
 	{
 		for (int i = 0; i < UP_DUST_COUNT_SIZE; i++)
 		{
@@ -252,7 +236,7 @@ void UpdateDust(HWND hWnd)
 		}
 	}
 
-	if ((FrameR % 120) == 0)
+	if ((FrameR % 60) == 0)
 	{
 		for (int i = 0; i < RIGHT_DUST_COUNT_SIZE; i++)
 		{
@@ -266,7 +250,7 @@ void UpdateDust(HWND hWnd)
 		}
 	}
 
-	if ((FrameL % 120) == 0)
+	if ((FrameL % 60) == 0)
 	{
 		for (int i = 0; i < LEFT_DUST_COUNT_SIZE; i++)
 		{
@@ -278,7 +262,7 @@ void UpdateDust(HWND hWnd)
 				break;
 			}
 		}
-	}*/
+	}
 
 
 	POINT mouse_p;
@@ -302,6 +286,9 @@ void UpdateDust(HWND hWnd)
 
 		g_DustBlockDown[d].pos.y += g_DustBlockDown[d].speed.y;
 
+		/*char str[256];
+		sprintf_s(str, "PosY: %d \n", g_DustBlockDown[d].pos.y);
+		OutputDebugString(str);*/
 		if (mouse == 1)
 		{
 			if (mouse_p.x < (g_DustBlockDown[d].pos.x + DUST_SIZE_X) && mouse_p.x >= (g_DustBlockDown[d].pos.x - DUST_SIZE_X) &&
@@ -309,7 +296,7 @@ void UpdateDust(HWND hWnd)
 			{
 				g_DustBlockDown[d].Isdisp = false;
 				g_DustBlockDown[d].pos.y = 0;
-				//g_DustBlockDown[d].speed.y = 0;
+				g_DustBlockDown[d].speed.y = 0;
 				UpdateScore(5);
 			}
 		}
@@ -323,7 +310,7 @@ void UpdateDust(HWND hWnd)
 		{
 			g_DustBlockDown[d].Isdisp = false;
 			g_DustBlockDown[d].pos.y = SCREEN_TOP + 120;
-			//g_DustBlockDown[d].speed.y = 0;
+			g_DustBlockDown[d].speed.y = 0;
 		}
 	}
 
@@ -345,7 +332,7 @@ void UpdateDust(HWND hWnd)
 			{
 				g_DustBlockUp[u].Isdisp = false;
 				g_DustBlockUp[u].pos.y = SCREEN_BOTTOM + 20;
-				//g_DustBlockUp[u].speed.y = 0;
+				g_DustBlockUp[u].speed.y = 0;
 				UpdateScore(5);
 			}
 		}
@@ -361,7 +348,7 @@ void UpdateDust(HWND hWnd)
 		{
 			g_DustBlockUp[u].Isdisp = false;
 			g_DustBlockUp[u].pos.y = SCREEN_BOTTOM;
-			//g_DustBlockUp[u].speed.y = 0;
+			g_DustBlockUp[u].speed.y = 0;
 		}
 	
 	}
@@ -396,7 +383,7 @@ void UpdateDust(HWND hWnd)
 		{
 			g_DustBlockRight[u].Isdisp = false;
 			g_DustBlockRight[u].pos.x = SCREEN_LEFT - 20;
-			//g_DustBlockRight[u].speed.x = 0;
+			g_DustBlockRight[u].speed.x = 0;
 		}
 
 	}
@@ -418,7 +405,7 @@ void UpdateDust(HWND hWnd)
 			{
 				g_DustBlockLeft[u].Isdisp = false;
 				g_DustBlockLeft[u].pos.x = SCREEN_RIGHT + 20;
-				//g_DustBlockLeft[u].speed.x = 0;
+				g_DustBlockLeft[u].speed.x = 0;
 				UpdateScore(5);
 			}
 		}
@@ -431,7 +418,7 @@ void UpdateDust(HWND hWnd)
 		{
 			g_DustBlockLeft[u].Isdisp = false;
 			g_DustBlockLeft[u].pos.x = SCREEN_RIGHT + 20;
-			//g_DustBlockLeft[u].speed.x = 0;
+			g_DustBlockLeft[u].speed.x = 0;
 		}
 
 	}

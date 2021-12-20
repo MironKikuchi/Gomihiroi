@@ -27,6 +27,7 @@ typedef struct
 ------------------------------------------------------------------------------*/
 static TIMELIMIT_T g_TimeGage;
 
+static int g_TimeImageTexture;
 static int g_TimeTextureIndex;
 static int g_Waku;
 
@@ -53,6 +54,7 @@ clock_t TimeStart;
 ------------------------------------------------------------------------------*/
 void InitTime(void)
 {
+	g_TimeImageTexture = LoadTexture("texture/minitime.png");
 	g_TimeTextureIndex = LoadTexture("texture/Gage2.png");
 	g_Waku = LoadTexture("texture/Waku.png");
 
@@ -114,6 +116,12 @@ void UpdateTime(int addpenalty)
 ------------------------------------------------------------------------------*/
 void DrawTime(void)
 {
+	DrawSprite(g_TimeImageTexture,
+		TIME_IMAGE_X + 80, TIME_IMAGE_Y,
+		TIME_IMAGE_WIDTH, TIME_IMAGE_HEIGHT,
+		0.0f, 0.0f,
+		1.0f, 1.0f);
+
 	DrawSprite(g_Waku,
 		SCREEN_HALFWIDTH + 120, 100,
 		SCREEN_HALFWIDTH, SCREEN_HALFHEIGHT - 460,
@@ -124,12 +132,12 @@ void DrawTime(void)
 	pDevice = GetDevice();
 
 	//左上90  280
-	//右上450 550
-	//間360   270
+	//右上450 500
+	//間360   220
 	// 頂点データ
 	Vertex2D Gage[] = {
 		{//左上
-			D3DXVECTOR4((float)(g_TimeGage.Pos.x - TIMEFONT_SIZE_X) + (((float)i * 1.5) + (float)j * 1.5), (float)g_TimeGage.Pos.y - TIMEFONT_SIZE_Y, 0.0f, 1.0f),
+			D3DXVECTOR4((float)(g_TimeGage.Pos.x - TIMEFONT_SIZE_X) + (((float)i * 3.7) + (float)j * 3.7), (float)g_TimeGage.Pos.y - TIMEFONT_SIZE_Y, 0.0f, 1.0f),
 			D3DXCOLOR(1.0f,1.0f,1.0f,1.0f),
 			D3DXVECTOR2(0.0f,0.0f),
 		},
@@ -139,7 +147,7 @@ void DrawTime(void)
 			D3DXVECTOR2(1.0f,0.0f),
 		},
 		{//左下
-			D3DXVECTOR4((float)(g_TimeGage.Pos.x - TIMEFONT_SIZE_X) + (((float)i * 1.5) + (float)j * 1.5), (float)g_TimeGage.Pos.y + TIMEFONT_SIZE_Y,0.0f,1.0f),
+			D3DXVECTOR4((float)(g_TimeGage.Pos.x - TIMEFONT_SIZE_X) + (((float)i * 3.7) + (float)j * 3.7), (float)g_TimeGage.Pos.y + TIMEFONT_SIZE_Y,0.0f,1.0f),
 			D3DXCOLOR(1.0f,1.0f,1.0f,1.0f),
 			D3DXVECTOR2(0.0f,1.0f),
 		},
