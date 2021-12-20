@@ -1,4 +1,5 @@
 #include <Windows.h>
+#include <stdio.h>
 #include "main.h"
 #include "title.h"
 #include "DirectX.h"
@@ -13,6 +14,7 @@
 #include "PuzzleBlock5.h"
 #include "timelimit.h"
 #include "highscoreresult.h"
+#include "normalresult.h"
 //#include "sound.h"
 //#include "fade.h"
 //#include "goalscene.h"
@@ -116,15 +118,15 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	//InitFade();
 
 
-	//シーンの初期化（タイトルからスタート）
+	//シーンの初期化（タイトルからスタート
 	//SceneFadeIn(SCENE_GAME1_1);
-	InitScene(SCENE_TITLE);
+	InitScene(SCENE_GAME);
 
 	//デバッグ文字列の初期化
 	//InitDebugProc();
 
 	//ゲームの初期化
-	InitGame();
+	//InitGame();
 
 	//メッセージループ
 	MSG msg = {};
@@ -139,11 +141,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		else {
 			//ゲームの処理をここに書いていく
 			Update(hWnd);
-
 			Draw();
 			DrawScene();
-
-
 		}
 	}
 
@@ -217,6 +216,7 @@ void Update(HWND hWnd)
 	TrashSetMouse(onClick);
 	FridgeSetMouse(onClick);
 	HighResultSetMouse(onClick);
+	NormalResultSetMouse(onClick);
 	
 	UpdateScene(hWnd);
 }
@@ -259,11 +259,25 @@ void Draw(void)
 	);
 }
 
-//int MousePointerPos()
-//{
-//	g_MouseCursorPos_x;
-//	g_MouseCursorPos_y;
-//	return 0;
-//}
 
-
+/*------------------------------------------------------------------------------
+Debug print
+------------------------------------------------------------------------------*/
+void DebugPrint(int i) {
+	char str[256];
+	sprintf_s(str, ": %d \n", i);
+	OutputDebugString(str);
+}
+void DebugPrint(float f) {
+	char str[256];
+	sprintf_s(str, ": %f \n", f);
+	OutputDebugString(str);
+}
+void DebugPrint(bool b) {
+	char str[256];
+	sprintf_s(str, ": %d \n", b);
+	OutputDebugString(str);
+}
+void DebugPrint(char s[]) {
+	OutputDebugString(s);
+}

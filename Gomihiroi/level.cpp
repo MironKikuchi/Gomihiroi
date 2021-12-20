@@ -22,6 +22,7 @@ typedef struct
 /*------------------------------------------------------------------------------
 グローバル変数の定義
 ------------------------------------------------------------------------------*/
+static int g_NextGomiImage;
 static int g_SetTextureIndex;
 static int g_SetNextTextureIndex;
 static int g_DustTexture;
@@ -38,6 +39,7 @@ static int ClickLevel;
 ------------------------------------------------------------------------------*/
 void InitLevel(void)
 {
+	g_NextGomiImage = LoadTexture("texture/mininextgomi.png");
 	g_SetTextureIndex = LoadTexture("texture/Hokori.png");
 	g_SetNextTextureIndex = LoadTexture("texture/Banana.png");
 	g_DustTexture = LoadTexture("texture/Hokori.png");
@@ -79,15 +81,21 @@ void UpdateLevel(int addLevel)
 ------------------------------------------------------------------------------*/
 void DrawLevel(void)
 {
-	DrawSprite(g_SetNextTextureIndex,
-		SCREEN_HALFWIDTH - 80, 150,
-		SCREEN_HALFWIDTH - 150, SCREEN_HALFHEIGHT - 350,
+	DrawSprite(g_NextGomiImage,
+		SCREEN_HALFWIDTH - 120, 30,
+		NEXT_IMAGE_SIZE_X, NEXT_IMAGE_SIZE_Y,
 		0.0f, 0.0f,
 		1.0f, 1.0f);
 
 	DrawSprite(g_SetTextureIndex,
-		SCREEN_HALFWIDTH - 200, 150,
-		SCREEN_HALFWIDTH - 150, SCREEN_HALFHEIGHT - 350,
+		SCREEN_HALFWIDTH - 200, 80,
+		SCREEN_HALFWIDTH - 200, SCREEN_HALFHEIGHT - 400,
+		0.0f, 0.0f,
+		1.0f, 1.0f);
+
+	DrawSprite(g_SetNextTextureIndex,
+		SCREEN_HALFWIDTH - 120, 80,
+		SCREEN_HALFWIDTH - 200, SCREEN_HALFHEIGHT - 400,
 		0.0f, 0.0f,
 		1.0f, 1.0f);
 }

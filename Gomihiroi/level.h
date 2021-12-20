@@ -1,5 +1,8 @@
 #pragma once
 
+#define NEXT_IMAGE_SIZE_X 128
+#define NEXT_IMAGE_SIZE_Y 128
+
 enum Level
 {
 	LEVEL_DUST,		//初期値 埃がクリックできる

@@ -42,7 +42,7 @@ void InitTitle(void)
 	g_TitleButton.Pos.x = (TITLEBG_HALF_SIZE_X);
 	g_TitleButton.Pos.y = (TITLEBG_HALF_SIZE_Y) + 150;
 
-	g_BgTextureIndex = LoadTexture("texture/Title.png");
+	g_BgTextureIndex = LoadTexture("texture/title4.png");
 	g_TitleTextureIndex = LoadTexture("texture/Title02.png");
 	g_StartTextureIndex = LoadTexture("texture/Play.png");
 	g_ExitTextureIndex = LoadTexture("texture/Rizart.png");
@@ -101,11 +101,11 @@ void DrawTitle(void)
 		0.0f, 0.0f,
 		1.0f, 1.0f);
 
-	DrawSprite(g_TitleTextureIndex,
-		(SCREEN_HALFWIDTH), (SCREEN_HALFHEIGHT) - 360,
+	/*DrawSprite(g_TitleTextureIndex,
+		(SCREEN_HALFWIDTH), (SCREEN_HALFHEIGHT) - 330,
 		TITLEFONT_SIZE_X, TITLEFONT_SIZE_Y,
 		0.0f, 0.0f,
-		1.0f, 1.0f);
+		1.0f, 1.0f);*/
 
 	DrawSprite(g_StartTextureIndex,
 		(SCREEN_HALFWIDTH), (SCREEN_HALFHEIGHT) + 200,

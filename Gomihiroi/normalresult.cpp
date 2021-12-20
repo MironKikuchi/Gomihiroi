@@ -94,6 +94,8 @@ float g_n_5th10000byouga;
 float g_n_5th100000byouga;
 float g_n_5th1000000byouga;
 
+//リトライボタン
+static int g_RetryTextureIndex;
 //タイトルに戻るボタン
 static int g_ExitTextureIndex;
 
@@ -144,7 +146,8 @@ void InitNormalResult(void)
 	g_n_5thScoreTextureIndex = LoadTexture("texture/5th.png");
 	g_n_5thScoreNumberTextureIndex = LoadTexture("texture/Newnumber.png");
 
-	g_ExitTextureIndex = LoadTexture("texture/EXIT_BUTTON.png");
+	g_RetryTextureIndex = LoadTexture("texture/mouikkai2.png");
+	g_ExitTextureIndex = LoadTexture("texture/titlemodoru1.png");
 
 	/*g_BGMIndex = LoadSound("sound/bgm01.WAV");
 
@@ -221,9 +224,20 @@ void UpdateNormalResult(HWND hWnd)
 	sprintf_s(str, "PosX: %d PosY: %d \n", mouse_p.x, mouse_p.y);
 	OutputDebugString(str);*/
 
-	//リザルトボタンの当たり判定
-	if (mouse_p.x < (SCREEN_HALFWIDTH + EXITBUTTON_SIZE_X) && mouse_p.x >= (SCREEN_HALFWIDTH - EXITBUTTON_SIZE_X) &&
-		mouse_p.y < ((SCREEN_HALFHEIGHT - 100) + EXITBUTTON_SIZE_Y) && mouse_p.y >= ((SCREEN_HALFHEIGHT - 100) - EXITBUTTON_SIZE_Y))
+	//リトライボタンの当たり判定
+	if (mouse_p.x < RETRY_BUTTON_X + RETRY_BUTTON_WIDTH && mouse_p.x >= RETRY_BUTTON_X - RETRY_BUTTON_WIDTH &&
+		mouse_p.y < RETRY_BUTTON_Y + RETRY_BUTTON_HEIGHT && mouse_p.y >= RETRY_BUTTON_Y - RETRY_BUTTON_HEIGHT - 10)
+	{
+		if (mouse == 1)
+		{
+			SetScene(SCENE_GAME);
+			CheckScene();
+		}
+	}
+
+	//タイトルに戻るボタンの当たり判定
+	if (mouse_p.x < EXIT_BUTTON_X + RETRY_BUTTON_WIDTH && mouse_p.x >= EXIT_BUTTON_X - RETRY_BUTTON_WIDTH &&
+		mouse_p.y < EXIT_BUTTON_Y + RETRY_BUTTON_HEIGHT && mouse_p.y >= EXIT_BUTTON_Y - RETRY_BUTTON_HEIGHT - 10)
 	{
 		if (mouse == 1)
 		{
@@ -231,15 +245,16 @@ void UpdateNormalResult(HWND hWnd)
 			CheckScene();
 		}
 	}
+	
 
 	int NumberChenge = 0;
 
 
 
 	NumberChenge = g_NormalScore;
-	char str[256];
+	/*char str[256];
 	sprintf_s(str, " %d \n", NumberChenge);
-	OutputDebugString(str);
+	OutputDebugString(str);*/
 
 	g_Normalbyouga = (float)NumberChenge / 10;
 
@@ -292,9 +307,15 @@ void DrawNormalResult(void)
 		0.0f, 0.0f,
 		1.0f, 1.0f);
 
+	DrawSprite(g_RetryTextureIndex,
+		RETRY_BUTTON_X, RETRY_BUTTON_Y,
+		BUTTON_SIZE_X, BUTTON_SIZE_Y,
+		0.0, 0.0f,
+		1.0f, 1.0f);
+
 	DrawSprite(g_ExitTextureIndex,
-		(SCREEN_HALFWIDTH), (SCREEN_HALFHEIGHT)-50,
-		EXITBUTTON_SIZE_X, EXITBUTTON_SIZE_Y,
+		EXIT_BUTTON_X, EXIT_BUTTON_Y,
+		BUTTON_SIZE_X, BUTTON_SIZE_Y,
 		0.0, 0.0f,
 		1.0f, 1.0f);
 

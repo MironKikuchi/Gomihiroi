@@ -144,7 +144,7 @@ void InitHighResult(void)
 	g_5thScoreTextureIndex = LoadTexture("texture/5th.png");
 	g_5thScoreNumberTextureIndex = LoadTexture("texture/Newnumber.png");
 
-	g_ExitTextureIndex = LoadTexture("texture/EXIT_BUTTON.png");
+	g_ExitTextureIndex = LoadTexture("texture/titlemodoru1.png");
 
 	/*g_BGMIndex = LoadSound("sound/bgm01.WAV");
 
@@ -222,8 +222,8 @@ void UpdateHighResult(HWND hWnd)
 	OutputDebugString(str);*/
 
 	//リザルトボタンの当たり判定
-	if (mouse_p.x < (SCREEN_HALFWIDTH + EXITBUTTON_SIZE_X) && mouse_p.x >= (SCREEN_HALFWIDTH - EXITBUTTON_SIZE_X) &&
-		mouse_p.y < ((SCREEN_HALFHEIGHT - 100) + EXITBUTTON_SIZE_Y)&& mouse_p.y >= ((SCREEN_HALFHEIGHT - 100) - EXITBUTTON_SIZE_Y))
+	if (mouse_p.x < (SCREEN_HALFWIDTH + EXITBUTTON_SIZE_X) - 152 && mouse_p.x >= (SCREEN_HALFWIDTH - EXITBUTTON_SIZE_X) + 152 &&
+		mouse_p.y < SCREEN_HALFHEIGHT -30 && mouse_p.y >= SCREEN_HALFHEIGHT - 80)
 	{
 		if (mouse == 1)
 		{
@@ -237,9 +237,9 @@ void UpdateHighResult(HWND hWnd)
 	
 
 	NumberChenge = g_HighScore;
-	char str[256];
+	/*char str[256];
 	sprintf_s(str, " %d \n", NumberChenge);
-	OutputDebugString(str);
+	OutputDebugString(str);*/
 
 	g_Highbyouga = (float)NumberChenge / 10;
 

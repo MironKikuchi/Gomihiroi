@@ -53,7 +53,7 @@ clock_t TimeStart;
 ------------------------------------------------------------------------------*/
 void InitTime(void)
 {
-	g_TimeTextureIndex = LoadTexture("texture/Gage.png");
+	g_TimeTextureIndex = LoadTexture("texture/Gage2.png");
 	g_Waku = LoadTexture("texture/Waku.png");
 
 	g_TimeGage.Pos.x = TIMEFONT_POS_X;
@@ -104,7 +104,9 @@ void UpdateTime(int addpenalty)
 	i = TimeCount;
 	j += addpenalty;
 	b += TimeCount + addpenalty;
-
+	/*char str[256];
+	sprintf_s(str, "Time: %d Limit: %d PENALTY: %d \n", i, TimeLimit, j);
+	OutputDebugString(str);*/
 }
 
 /*------------------------------------------------------------------------------
@@ -113,7 +115,7 @@ void UpdateTime(int addpenalty)
 void DrawTime(void)
 {
 	DrawSprite(g_Waku,
-		SCREEN_HALFWIDTH + 150, 50,
+		SCREEN_HALFWIDTH + 120, 100,
 		SCREEN_HALFWIDTH, SCREEN_HALFHEIGHT - 460,
 		0.0f, 0.0f,
 		1.0f, 1.0f);
@@ -121,13 +123,13 @@ void DrawTime(void)
 	LPDIRECT3DDEVICE9 pDevice;
 	pDevice = GetDevice();
 
-	//左上90
-	//右上450
-	//360
+	//左上90  280
+	//右上450 550
+	//間360   270
 	// 頂点データ
 	Vertex2D Gage[] = {
 		{//左上
-			D3DXVECTOR4((float)(g_TimeGage.Pos.x - TIMEFONT_SIZE_X) + (((float)i * 2) + j * 2), (float)g_TimeGage.Pos.y - TIMEFONT_SIZE_Y, 0.0f, 1.0f),
+			D3DXVECTOR4((float)(g_TimeGage.Pos.x - TIMEFONT_SIZE_X) + (((float)i * 1.5) + (float)j * 1.5), (float)g_TimeGage.Pos.y - TIMEFONT_SIZE_Y, 0.0f, 1.0f),
 			D3DXCOLOR(1.0f,1.0f,1.0f,1.0f),
 			D3DXVECTOR2(0.0f,0.0f),
 		},
@@ -137,7 +139,7 @@ void DrawTime(void)
 			D3DXVECTOR2(1.0f,0.0f),
 		},
 		{//左下
-			D3DXVECTOR4((float)(g_TimeGage.Pos.x - TIMEFONT_SIZE_X) + (((float)i * 2) + j * 2), (float)g_TimeGage.Pos.y + TIMEFONT_SIZE_Y,0.0f,1.0f),
+			D3DXVECTOR4((float)(g_TimeGage.Pos.x - TIMEFONT_SIZE_X) + (((float)i * 1.5) + (float)j * 1.5), (float)g_TimeGage.Pos.y + TIMEFONT_SIZE_Y,0.0f,1.0f),
 			D3DXCOLOR(1.0f,1.0f,1.0f,1.0f),
 			D3DXVECTOR2(0.0f,1.0f),
 		},

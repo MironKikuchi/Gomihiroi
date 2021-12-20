@@ -7,6 +7,12 @@
 #define SCREEN_HALFWIDTH  270	//幅
 #define SCREEN_HALFHEIGHT 480	//高さ
 
+#define SCREEN_TOP 0
+#define SCREEN_BOTTOM SCREEN_HEIGHT
+#define SCREEN_RIGHT SCREEN_WIDTH
+#define SCREEN_LEFT 0
+
+
 //620 924
 
 // ２Dポリゴン頂点構造体
@@ -18,4 +24,7 @@ typedef struct Vertex2D_tag
 } Vertex2D;
 #define FVF_VERTEX2D (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1) // ２Dポリゴン頂点フォーマット
 
-int MousePointerPos();
+void DebugPrint(int i);
+void DebugPrint(float f);
+void DebugPrint(bool b);
+void DebugPrint(char s[]);

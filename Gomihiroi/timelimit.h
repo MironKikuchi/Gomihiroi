@@ -4,14 +4,14 @@
 #define TIME_SIZE_X 256
 #define TIME_SIZE_Y 144
 
-#define TIMEFONT_SIZE_X 120
-#define TIMEFONT_SIZE_Y 10
+#define TIMEFONT_SIZE_X 110
+#define TIMEFONT_SIZE_Y 7
 #define TIME_WAKU_WIDTH 100
 #define TIME_WAKU_HEIGHT 20
 
 
-#define TIMEFONT_POS_X SCREEN_HALFWIDTH	+ 150	//制限時間ゲージの表示座標X
-#define TIMEFONT_POS_Y 50					//制限時間ゲージの表示座標Y
+#define TIMEFONT_POS_X SCREEN_HALFWIDTH	+ 120	//制限時間ゲージの表示座標X
+#define TIMEFONT_POS_Y 100					//制限時間ゲージの表示座標Y
 
 #define TIME_NUMBER_MAX 4
 #define TIME_LIMIT 180
