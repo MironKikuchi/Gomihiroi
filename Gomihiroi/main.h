@@ -1,6 +1,8 @@
 #pragma once
 
 #include <d3dx9.h>
+
+
 // ウィンドウのサイズ
 #define SCREEN_WIDTH  540	//幅
 #define SCREEN_HEIGHT 960	//高さ
@@ -25,6 +27,7 @@ typedef struct Vertex2D_tag
 #define FVF_VERTEX2D (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1) // ２Dポリゴン頂点フォーマット
 
 void PrevMouse(int index);
+void SceneClick(int index);
 
 void DebugPrint(int i);
 void DebugPrint(float f);

@@ -73,9 +73,9 @@ void UpdateTitle(HWND hWnd)
 	//マウスの座標をスクリーンからクライアント(ウィンドウ)へ
 	ScreenToClient(hWnd, &mouse_p);
 
-	char str[256];
+	/*char str[256];
 	sprintf_s(str, "PosX: %d PosY: %d \n", mouse_p.x, mouse_p.y);
-	OutputDebugString(str);
+	OutputDebugString(str);*/
 
 	//タイトルのボタンの当たり判定
 	if (mouse_p.x < BUTTON_COLLISION_RIGHT && mouse_p.x >= BUTTON_COLLISION_LEFT &&
@@ -84,6 +84,7 @@ void UpdateTitle(HWND hWnd)
 		if (mouse == 1)
 		{
 			SetScene(SCENE_GAME);
+			SceneClick(SCENE_TITLE);
 			CheckScene();
 		}
 	}

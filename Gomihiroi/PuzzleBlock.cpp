@@ -291,8 +291,8 @@ void UpdateDust(HWND hWnd)
 		OutputDebugString(str);*/
 		if (mouse == 1)
 		{
-			if (mouse_p.x < (g_DustBlockDown[d].pos.x + DUST_SIZE_X) && mouse_p.x >= (g_DustBlockDown[d].pos.x - DUST_SIZE_X) &&
-				mouse_p.y < (g_DustBlockDown[d].pos.y + DUST_SIZE_Y) && mouse_p.y >= (g_DustBlockDown[d].pos.y - DUST_SIZE_Y))
+			if (mouse_p.x < (g_DustBlockDown[d].pos.x + (DUST_SIZE_X - 22)) && mouse_p.x >= (g_DustBlockDown[d].pos.x - (DUST_SIZE_X - 22)) &&
+				mouse_p.y < (g_DustBlockDown[d].pos.y + (DUST_SIZE_Y - 22)) && mouse_p.y >= (g_DustBlockDown[d].pos.y - (DUST_SIZE_Y - 22)))
 			{
 				g_DustBlockDown[d].Isdisp = false;
 				g_DustBlockDown[d].pos.y = 0;
@@ -327,8 +327,8 @@ void UpdateDust(HWND hWnd)
 
 		if (mouse == 1)
 		{
-			if (mouse_p.x < (g_DustBlockUp[u].pos.x + DUST_SIZE_X) && mouse_p.x >= (g_DustBlockUp[u].pos.x - DUST_SIZE_X) &&
-				mouse_p.y < (g_DustBlockUp[u].pos.y + DUST_SIZE_Y) && mouse_p.y >= (g_DustBlockUp[u].pos.y - DUST_SIZE_Y))
+			if (mouse_p.x < (g_DustBlockUp[u].pos.x + (DUST_SIZE_X - 22)) && mouse_p.x >= (g_DustBlockUp[u].pos.x - (DUST_SIZE_X - 22)) &&
+				mouse_p.y < (g_DustBlockUp[u].pos.y + (DUST_SIZE_Y - 22)) && mouse_p.y >= (g_DustBlockUp[u].pos.y - (DUST_SIZE_Y - 22)))
 			{
 				g_DustBlockUp[u].Isdisp = false;
 				g_DustBlockUp[u].pos.y = SCREEN_BOTTOM + 20;
@@ -365,8 +365,8 @@ void UpdateDust(HWND hWnd)
 
 		if (mouse == 1)
 		{
-			if (mouse_p.x < (g_DustBlockRight[u].pos.x + DUST_SIZE_X) && mouse_p.x >= (g_DustBlockRight[u].pos.x - DUST_SIZE_X) &&
-				mouse_p.y < (g_DustBlockRight[u].pos.y + DUST_SIZE_Y) && mouse_p.y >= (g_DustBlockRight[u].pos.y - DUST_SIZE_Y))
+			if (mouse_p.x < (g_DustBlockRight[u].pos.x + (DUST_SIZE_X - 22)) && mouse_p.x >= (g_DustBlockRight[u].pos.x - (DUST_SIZE_X - 22)) &&
+				mouse_p.y < (g_DustBlockRight[u].pos.y + (DUST_SIZE_Y - 22)) && mouse_p.y >= (g_DustBlockRight[u].pos.y - DUST_SIZE_Y - 22))
 			{
 				g_DustBlockRight[u].Isdisp = false;
 				g_DustBlockRight[u].pos.x = SCREEN_LEFT - 20;
@@ -400,8 +400,8 @@ void UpdateDust(HWND hWnd)
 
 		if (mouse == 1)
 		{
-			if (mouse_p.x < (g_DustBlockLeft[u].pos.x + DUST_SIZE_X) && mouse_p.x >= (g_DustBlockLeft[u].pos.x - DUST_SIZE_X) &&
-				mouse_p.y < (g_DustBlockLeft[u].pos.y + DUST_SIZE_Y) && mouse_p.y >= (g_DustBlockLeft[u].pos.y - DUST_SIZE_Y))
+			if (mouse_p.x < (g_DustBlockLeft[u].pos.x + (DUST_SIZE_X - 22)) && mouse_p.x >= (g_DustBlockLeft[u].pos.x - (DUST_SIZE_X - 22)) &&
+				mouse_p.y < (g_DustBlockLeft[u].pos.y + (DUST_SIZE_Y - 22)) && mouse_p.y >= (g_DustBlockLeft[u].pos.y - (DUST_SIZE_Y - 22)))
 			{
 				g_DustBlockLeft[u].Isdisp = false;
 				g_DustBlockLeft[u].pos.x = SCREEN_RIGHT + 20;

@@ -42,7 +42,7 @@ void InitBanana(void)
 
 	//フルパスfull pathではなくて
 	//相対パスを指定する
-	g_TextureIndex = LoadTexture("texture/Banana.png");
+	g_TextureIndex = LoadTexture("texture/Banana2.png");
 
 	for (int i = 0; i < _countof(g_Banana); i++)
 	{

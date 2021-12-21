@@ -15,9 +15,6 @@
 #include "timelimit.h"
 #include "highscoreresult.h"
 #include "normalresult.h"
-//#include "sound.h"
-//#include "fade.h"
-//#include "goalscene.h"
 
 
 #pragma comment (lib, "d3d9.lib")
@@ -45,12 +42,15 @@ void Draw(void);
 ------------------------------------------------------------------------------*/
 static int g_MouseCursorPos_x;
 static int g_MouseCursorPos_y;
+int onClick = 0;
+int RespondToMouse = 0;
+
 
 
 /*------------------------------------------------------------------------------
 メイン関数
 ------------------------------------------------------------------------------*/
-int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
@@ -113,20 +113,14 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	Initialize(hWnd);
 	Keyboard_Initialize(hInstance, hWnd);
 
-	//InitSound(hWnd);
-
-	//InitFade();
-
 
 	//シーンの初期化（タイトルからスタート
-	//SceneFadeIn(SCENE_GAME1_1);
-	InitScene(SCENE_GAME);
+	InitScene(SCENE_TITLE);
 
 	//デバッグ文字列の初期化
 	//InitDebugProc();
 
 	//ゲームの初期化
-	//InitGame();
 
 	//メッセージループ
 	MSG msg = {};
@@ -199,19 +193,24 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	//その他のメッセージはWindowsに任せる
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
-int onClick = 0;
 int OldClick = 0;
-int RespondToMouse = 0;
+int SetSceneClick = 0;
 /*------------------------------------------------------------------------------
 ゲームの更新
 ------------------------------------------------------------------------------*/
 void Update(HWND hWnd)
 {
-	
+	//OldClick = onClick;
 	Keyboard_Update();
 	
 	//左クリックされたか？
 	//int onClick = (GetKeyState(VK_LBUTTON) & 0x80) ? 1 : 0;
+	/*if ((onClick = GetKeyState(VK_LBUTTON) & 0x80) && RespondToMouse == 0 && OldClick == 0)
+	{
+		
+	}*/
+
+	//左クリックが押されていて、寸前にクリックされていなかったら
 	if ((onClick = GetKeyState(VK_LBUTTON) & 0x80) && RespondToMouse == 0)
 	{
 		onClick = 1;
@@ -223,9 +222,15 @@ void Update(HWND hWnd)
 		FridgeSetMouse(onClick);
 		HighResultSetMouse(onClick);
 		NormalResultSetMouse(onClick);
+
 		PrevMouse(onClick);
+		//onClick == NULL;
+		/*char str[256];
+		sprintf_s(str, "P: %d \n", onClick);
+		OutputDebugString(str);*/
 	}
-	else if(onClick = GetKeyState(VK_LBUTTON) & 0x80)
+	//左クリックが押されていて、寸前にクリックされていたら
+	else if (onClick = GetKeyState(VK_LBUTTON) & 0x80)
 	{
 		onClick = 0;
 		TitleSetMouse(onClick);
@@ -237,9 +242,19 @@ void Update(HWND hWnd)
 		HighResultSetMouse(onClick);
 		NormalResultSetMouse(onClick);
 	}
+	//そのどちらでもない場合
 	else
 	{
+		onClick = 0;
 		PrevMouse(0);
+		TitleSetMouse(onClick);
+		DustSetMouse(onClick);
+		BananaSetMouse(onClick);
+		BookSetMouse(onClick);
+		TrashSetMouse(onClick);
+		FridgeSetMouse(onClick);
+		HighResultSetMouse(onClick);
+		NormalResultSetMouse(onClick);
 	}
 
 	UpdateScene(hWnd);
@@ -286,6 +301,11 @@ void Draw(void)
 void PrevMouse(int index)
 {
 	RespondToMouse = index;
+}
+
+void SceneClick(int index)
+{
+	SetSceneClick = index;
 }
 
 /*------------------------------------------------------------------------------

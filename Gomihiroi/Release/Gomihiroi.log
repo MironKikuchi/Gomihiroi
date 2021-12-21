@@ -1,0 +1,82 @@
+﻿  DirectX.cpp
+  PuzzleBlock.cpp
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(21,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'DUST_T' の左辺を無視します。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(98,33): warning C4244: '=': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(107,31): warning C4244: '=': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(117,34): warning C4244: '=': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(126,33): warning C4244: '=': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(138,35): warning C4244: '=': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(150,33): warning C4244: '=': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(159,36): warning C4244: '=': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(168,35): warning C4244: '=': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(479,36): warning C4805: '==': 演算中の 'int' 型と 'bool' 型の混用は安全ではありません
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(535,34): warning C4805: '==': 演算中の 'int' 型と 'bool' 型の混用は安全ではありません
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(590,37): warning C4805: '==': 演算中の 'int' 型と 'bool' 型の混用は安全ではありません
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock.cpp(646,36): warning C4805: '==': 演算中の 'int' 型と 'bool' 型の混用は安全ではありません
+  PuzzleBlock2.cpp
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock2.cpp(24,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'BANANA_T' の左辺を無視します。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock2.cpp(60,26): warning C4244: '=': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock2.cpp(198,29): warning C4805: '==': 演算中の 'int' 型と 'bool' 型の混用は安全ではありません
+  PuzzleBlock3.cpp
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock3.cpp(24,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'BOOK_T' の左辺を無視します。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock3.cpp(60,24): warning C4244: '=': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock3.cpp(199,27): warning C4805: '==': 演算中の 'int' 型と 'bool' 型の混用は安全ではありません
+  PuzzleBlock4.cpp
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock4.cpp(24,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'TRASH_T' の左辺を無視します。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock4.cpp(60,25): warning C4244: '=': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock4.cpp(198,28): warning C4805: '==': 演算中の 'int' 型と 'bool' 型の混用は安全ではありません
+  PuzzleBlock5.cpp
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock5.cpp(24,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'FRIDGE_T' の左辺を無視します。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock5.cpp(60,26): warning C4244: '=': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\PuzzleBlock5.cpp(199,29): warning C4805: '==': 演算中の 'int' 型と 'bool' 型の混用は安全ではありません
+  game.cpp
+  highscoreresult.cpp
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(248,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(253,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(258,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(263,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(268,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(273,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(689,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(694,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(699,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(704,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(709,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(714,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(726,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(731,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(736,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(741,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(746,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\highscoreresult.cpp(751,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  level.cpp
+  main.cpp
+  normalresult.cpp
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\normalresult.cpp(263,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\normalresult.cpp(268,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\normalresult.cpp(273,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\normalresult.cpp(278,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\normalresult.cpp(283,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\normalresult.cpp(288,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\normalresult.cpp(675,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\normalresult.cpp(680,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\normalresult.cpp(685,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\normalresult.cpp(690,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\normalresult.cpp(695,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\normalresult.cpp(700,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  score.cpp
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\score.cpp(92,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\score.cpp(97,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\score.cpp(102,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\score.cpp(107,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\score.cpp(112,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\score.cpp(117,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  timelimit.cpp
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\timelimit.cpp(88,18): warning C4244: '初期化中': 'clock_t' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\timelimit.cpp(106,6): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\timelimit.cpp(108,29): warning C4244: '+=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\timelimit.cpp(140,60): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
+C:\Users\miron\Projects\Gomihiroi\Gomihiroi\timelimit.cpp(150,60): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
+  title.cpp
+MSVCRT.lib(exe_main.obj) : error LNK2001: 外部シンボル _main は未解決です
+C:\Users\miron\Projects\Gomihiroi\Release\Gomihiroi.exe : fatal error LNK1120: 1 件の未解決の外部参照
